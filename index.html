@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>متابعة مخطط السنة الثالثة</title>
+<meta name="description" content="متابعة إنجاز حصص الرياضيات والإيقاظ العلمي للسنة الثالثة ابتدائي">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --surface-2:#faf8f3; --ink:#1d2320; --ink-2:#4b5550; --ink-3:#7a837e;
+  --line:#e2ded4; --line-2:#ece8df;
+  --ok:#1f8a4c; --ok-bg:#e4f4ea; --ok-bg-2:#d3eddc; --ok-line:#9fd3b3;
+  --sup:#b8620b; --sup-bg:#fdf0dc; --sup-line:#f0c68a;
+  --todo:#d9d5cb;
+  --head:#dfe9c9; --head-ink:#33421d; --act:#e9c795; --act-ink:#5c3d12;
+  --shadow:0 1px 2px rgba(30,35,30,.06),0 2px 8px rgba(30,35,30,.05);
+  --radius:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141816; --surface:#1c211f; --surface-2:#202624; --ink:#e9ede9; --ink-2:#b6bfba; --ink-3:#86908a;
+    --line:#2f3733; --line-2:#29302d;
+    --ok:#4cc27d; --ok-bg:#183425; --ok-bg-2:#1d3f2c; --ok-line:#2f6b47;
+    --sup:#f0a24a; --sup-bg:#3a2a14; --sup-line:#6b4a1f;
+    --todo:#39413d; --head:#2c3a22; --head-ink:#d6e6bd; --act:#4a3a22; --act-ink:#f0d6ad;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141816; --surface:#1c211f; --surface-2:#202624; --ink:#e9ede9; --ink-2:#b6bfba; --ink-3:#86908a;
+  --line:#2f3733; --line-2:#29302d;
+  --ok:#4cc27d; --ok-bg:#183425; --ok-bg-2:#1d3f2c; --ok-line:#2f6b47;
+  --sup:#f0a24a; --sup-bg:#3a2a14; --sup-line:#6b4a1f;
+  --todo:#39413d; --head:#2c3a22; --head-ink:#d6e6bd; --act:#4a3a22; --act-ink:#f0d6ad;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:15px;line-height:1.7}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header.top{padding:28px 0 8px}
+.title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+h1{font-size:26px;margin:0;font-weight:700;letter-spacing:0}
+.sub{color:var(--ink-3);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn svg{width:16px;height:16px}
+
+.summary{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:12px;margin:20px 0 6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+.stat .k{font-size:13px;color:var(--ink-3)}
+.stat .v{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat.ok .v{color:var(--ok)} .stat.sup .v{color:var(--sup)}
+.big .v{font-size:34px}
+.bar{height:10px;border-radius:99px;background:var(--todo);overflow:hidden;display:flex;margin-top:8px}
+.bar i{display:block;height:100%;transition:width .35s ease}
+.bar .b-ok{background:var(--ok)} .bar .b-sup{background:var(--sup)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink-3);margin-top:8px;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;margin-inline-end:5px;vertical-align:middle;background:var(--todo)}
+.legend .l-ok::before{background:var(--ok)} .legend .l-sup::before{background:var(--sup)}
+
+/* ---------- sticky nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 0;margin-top:14px}
+.nav .wrap{display:flex;flex-direction:column;gap:10px}
+.nav-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tabs{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.tab{border:0;background:none;padding:7px 16px;border-radius:9px;font-size:14px;font-weight:600;color:var(--ink-2)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab .pct{font-weight:500;opacity:.7;margin-inline-start:6px;font-size:12px}
+.filters{display:inline-flex;gap:6px;flex-wrap:wrap;margin-inline-start:auto}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:500}
+.chip[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--ink)}
+.chip .n{font-variant-numeric:tabular-nums;color:var(--ink-3);margin-inline-start:4px}
+.periods{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.pjump{flex:1 0 128px;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:7px 10px 8px;color:var(--ink);border-top:3px solid var(--pc)}
+.pjump b{font-size:13px;font-weight:600}
+.pjump small{float:left;color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:12px}
+.pjump .bar{height:6px;margin-top:5px}
+.pjump.done{background:var(--ok-bg)}
+
+/* ---------- period section ---------- */
+main{padding:18px 0 60px}
+.period{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden;border-top:5px solid var(--pc)}
+.p-head{display:flex;align-items:center;gap:16px;padding:14px 18px;cursor:pointer;user-select:none;flex-wrap:wrap}
+.p-head h2{margin:0;font-size:19px;font-weight:700}
+.p-head h2 small{font-weight:500;color:var(--ink-3);font-size:14px;margin-inline-start:6px}
+.p-prog{flex:1;min-width:200px;max-width:460px;margin-inline-start:auto}
+.p-prog .bar{margin-top:0}
+.p-count{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums;display:flex;gap:12px;margin-top:4px;flex-wrap:wrap}
+.p-count .c-ok{color:var(--ok);font-weight:600} .p-count .c-sup{color:var(--sup);font-weight:600}
+.badge-done{background:var(--ok);color:#fff;border-radius:99px;font-size:12px;padding:2px 10px;font-weight:600}
+.chev{width:22px;height:22px;color:var(--ink-3);transition:transform .2s}
+.period.collapsed .chev{transform:rotate(90deg)}
+.period.collapsed .p-body{display:none}
+.p-body{padding:0 18px 18px}
+.sec-label{font-size:14px;font-weight:600;color:#4a74a8;margin:6px 2px 8px;display:flex;align-items:center;gap:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sec-label{color:#8fb4e0}}
+:root[data-theme="dark"] .sec-label{color:#8fb4e0}
+
+/* ---------- table ---------- */
+.tbl-wrap{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--head);color:var(--head-ink);font-weight:600;font-size:14px;padding:9px 10px;border-inline-start:1px solid var(--line);text-align:center;white-space:nowrap}
+td{padding:9px 10px;border-top:1px solid var(--line);border-inline-start:1px solid var(--line-2);vertical-align:top;white-space:pre-line}
+th:first-child,td:first-child{border-inline-start:0}
+td.act{background:var(--act);color:var(--act-ink);font-weight:600;text-align:center;vertical-align:middle;width:74px}
+td.comp{background:var(--surface-2);color:var(--ink-2);vertical-align:middle;width:170px;font-size:13.5px}
+td.day{text-align:center;font-weight:700;font-variant-numeric:tabular-nums;width:54px;vertical-align:middle;font-size:15px}
+td.goal{min-width:170px}
+td.cont{min-width:170px}
+td.sess{min-width:190px}
+td.st{width:196px;vertical-align:middle;background:var(--surface)}
+.note{display:block;color:var(--ink-3);font-size:12.5px}
+tr.s-row{transition:background .25s}
+tr.s-row.is-ok td:not(.act):not(.comp),tr.s-row.is-sup td:not(.act):not(.comp){background:var(--ok-bg)}
+tr.s-row.is-ok td.day{box-shadow:inset -4px 0 0 var(--ok)}
+tr.s-row.is-sup td.day{box-shadow:inset -4px 0 0 var(--sup)}
+.stbtns{display:flex;flex-direction:column;gap:6px}
+.sbtn{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:9px;padding:6px 10px;font-size:13px;font-weight:500;text-align:start;width:100%}
+.sbtn .box{width:18px;height:18px;border-radius:5px;border:1.6px solid var(--ink-3);display:grid;place-items:center;flex:none;background:var(--surface)}
+.sbtn .box svg{width:13px;height:13px;opacity:0}
+.sbtn:hover{border-color:var(--ink-3)}
+.sbtn.ok[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.sbtn.ok[aria-pressed="true"] .box{border-color:#fff;background:#fff;color:var(--ok)}
+.sbtn.sup[aria-pressed="true"]{background:var(--sup);border-color:var(--sup);color:#fff}
+.sbtn.sup[aria-pressed="true"] .box{border-color:#fff;background:#fff;color:var(--sup)}
+.sbtn[aria-pressed="true"] .box svg{opacity:1}
+.stamp{font-size:11.5px;color:var(--ink-3);text-align:center;margin-top:2px;font-variant-numeric:tabular-nums}
+.empty{padding:18px;text-align:center;color:var(--ink-3);font-size:14px}
+
+/* ---------- evaluation ---------- */
+.eval{margin-top:18px}
+.eval td.perf{white-space:pre-line;line-height:1.9}
+.eval td.att{width:280px;vertical-align:middle;background:var(--surface)}
+.eval tr.has-file td.perf{background:var(--ok-bg)}
+.attach-btn{width:100%;justify-content:center;border:1.5px dashed var(--ink-3);background:var(--surface-2);color:var(--ink);font-weight:600;padding:10px 12px;border-radius:10px;display:flex;gap:8px;align-items:center;font-size:14px}
+.attach-btn:hover{border-color:var(--ok);color:var(--ok)}
+.attach-btn svg{width:18px;height:18px}
+.files{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.files li{display:flex;align-items:center;gap:8px;border:1px solid var(--ok-line);background:var(--ok-bg);border-radius:9px;padding:5px 8px;font-size:12.5px}
+.files a{color:var(--ink);text-decoration:none;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:right}
+.files a:hover{text-decoration:underline}
+.files .x{border:0;background:none;color:var(--ink-3);padding:2px;display:grid;place-items:center}
+.files .x:hover{color:#c0392b}
+.files .x svg{width:15px;height:15px}
+.files .sz{color:var(--ink-3);font-variant-numeric:tabular-nums}
+
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%)}
+footer{color:var(--ink-3);font-size:12.5px;text-align:center;padding:10px 0 30px}
+
+/* ---------- responsive: cards ---------- */
+@media (max-width:900px){
+  .summary{grid-template-columns:1fr 1fr}
+  .summary .big{grid-column:1/-1}
+  h1{font-size:21px}
+  .filters{margin-inline-start:0}
+  .nav{position:static}
+  html{scroll-padding-top:10px}
+  .wrap{padding:0 16px}
+  .p-body{padding:0 10px 12px}
+  .tbl-wrap{border:0;overflow:visible}
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tr.s-row{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--surface)}
+  tr.s-row.is-ok,tr.s-row.is-sup{border-color:var(--ok-line)}
+  td{border:0;border-top:1px solid var(--line-2);padding:8px 12px;width:auto !important;min-width:0 !important}
+  td[data-l]::before{content:attr(data-l);display:block;font-size:11.5px;font-weight:600;color:var(--ink-3);margin-bottom:1px}
+  td.act{display:none}
+  td.day{order:-1;border-top:0;text-align:start;background:var(--head)!important;color:var(--head-ink);box-shadow:none!important;padding:7px 12px}
+  td.day::before{display:inline!important;margin-inline-end:6px;color:inherit!important;opacity:.75}
+  td.comp{background:var(--surface-2)}
+  tr.s-row.is-ok td.day{background:var(--ok)!important;color:#fff}
+  tr.s-row.is-sup td.day{background:var(--ok)!important;color:#fff}
+  .stbtns{flex-direction:row}
+  .eval tr{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px}
+  .eval td.att{width:auto}
+}
+@media print{
+  .nav,.tools,.stbtns .sbtn:not([aria-pressed="true"]),.attach-btn,.files .x{display:none!important}
+  .period.collapsed .p-body{display:block}
+  body{background:#fff}
+  .period{break-inside:auto;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="title-row">
+      <div>
+        <h1>متابعة إنجاز مخطط السنة الثالثة</h1>
+        <p class="sub">الرياضيات والإيقاظ العلمي — التعلّم المنهجي والتقييم</p>
+      </div>
+      <div class="tools">
+        <button class="btn" id="exportBtn" title="حفظ نسخة احتياطية من التقدم والمرفقات"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>نسخة احتياطية</button>
+        <button class="btn" id="importBtn" title="استرجاع نسخة احتياطية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9m0 0l-4 4m4-4l4 4M4 7V5a2 2 0 012-2h12a2 2 0 012 2v2"/></svg>استرجاع</button>
+        <button class="btn" id="printBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v7H6z"/></svg>طباعة</button>
+        <input type="file" id="importFile" accept="application/json" hidden>
+      </div>
+    </div>
+    <div class="summary" id="summary"></div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="التنقل">
+  <div class="wrap">
+    <div class="nav-row">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="periods" id="periodNav"></div>
+  </div>
+</nav>
+
+<main><div class="wrap" id="content"></div></main>
+<footer>يُحفظ التقدّم والمرفقات تلقائيًا على هذا الجهاز. استعمل «نسخة احتياطية» لنقلها إلى جهاز آخر.</footer>
+<input type="file" id="attachInput" multiple accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx" hidden>
+<div class="toast" id="toast"></div>
+
+<script>
+const PLAN = {"math": {"1": {"sessions": [{"day": "01", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "أكون الأعداد ذات 4 أرقام وأكتبها وأقرؤها\nحساب ذهني: رقم منزلة معينة في عدد معلوم", "session_goals": "* يتعرّف المتعلم أعدادا ذات 4 أرقام"}, {"day": "02", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "أكون الأعداد ذات 4 أرقام وأكتبها وأقرؤها\nحساب ذهني: رقم منزلة معينة في عدد معلوم", "session_goals": "* يكوّن ويكتب ويقرأ المتعلّم أعدادا ذات 4 أرقام"}, {"day": "03", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* التصرّف في المسالك على الشبكة", "contents": "* الشبكة ومكوّناتها (التعرّف / التوظيف).", "session_goals": "*يتعرّف المتعلّم متمّم مجموعة في أخرى"}, {"day": "04", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* التصرّف في المسالك على الشبكة", "contents": "* الشبكة ومكوّناتها (التعرّف / التوظيف).", "session_goals": "* يحدّد المتعلّم زوج عقدة على الشبكة مستعملا الأرقام والحروف."}, {"day": "05", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "* التصرّف في وحدات قيس الأطوال والسعات والكتل.", "contents": "* العلاقة بين المتر والصنتمتر", "session_goals": "* يتعرّف المتعلم العلاقة بين المتر والصنتمتر"}, {"day": "06", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل..", "contents": "* العلاقة بين المتر والصنتمتر", "session_goals": "* يحلّ المتعلم وضعيات مشكل بتوظيف العلاقة بين المتر والصنتمتر."}, {"day": "07", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "*إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة.", "contents": "* الطرح بالزيادة- الفروق المتساوية (تعرّف / توظيف)\nحساب ذهني: العدّ صعودا ونزولا وفقا لخطوة منتظمة", "session_goals": "* يتعرّف المتعلم آلية الطرح بالزيادة"}, {"day": "08", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "*إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "* الطرح بالزيادة- الفروق المتساوية (تعرّف / توظيف)\nحساب ذهني: العدّ صعودا ونزولا وفقا لخطوة منتظمة", "session_goals": "* يحلّ المتعلم وضعيات مشكل بتوظيف الطرح بالزيادة."}, {"day": "09", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "*إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة.", "contents": "التدريب على حلّ المسائل. (تحديد المعطى العددي والمعطى اللفظي)", "session_goals": "* يحلّ المتعلّم مسألة بعد تحديد معطياتها اللفظية والعددية."}], "evaluation": {"activity": "رياضيات", "expected_performance": "في نهاية الفترة الأولى يكون المتعلّم قادرا على حلّ مسائل ذات دلالة بالنّسبة إليه تتضمّن أسئلة تستوجب الإجابة عن كلّ منها مرحلة واحدة وتتطلّب:\n*تكوين الأعداد ذات 4 أرقام\n*إجراء عمليات طرح بالزيادة\n*التصرف في المسالك على الشبكة\n*التصرف في المتر والصنتمتر"}}, "2": {"sessions": [{"day": "01", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "* أكوّن الآلاف الكاملة وأكتبها وأقرؤها\nحساب ذهني: عدد الوحدات في عدد", "session_goals": "* يتعرّف المتعلّم الآلاف الكاملة ويقرؤها"}, {"day": "02", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "* أكوّن الآلاف الكاملة وأكتبها وأقرؤها\nحساب ذهني: عدد الوحدات في عدد", "session_goals": "* يوظّف المتعلّم الآلاف الكاملة في حلّ وضعيات دالّة"}, {"day": "03", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* التصرّف في المسالك على الشبكة", "contents": "المسالك على الشبكة (التعرّف / الرسم)", "session_goals": "* يتعرّف المتعلّم اتجاهات مسلك على الشبكة."}, {"day": "04", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* التصرّف في المسالك على الشبكة", "contents": "المسالك على الشبكة (التعرّف / الرسم)", "session_goals": "*يرسم المتعلّم مسلكا على الشبكة أو يعبّر عنه بسهام."}, {"day": "05", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "* الآلاف الكاملة (التفكيك والتركيب)\nحساب ذهني: الصيغة القانونية لعدد", "session_goals": "* يفكك المتعلّم آلاف كاملة ويركّبها"}, {"day": "06", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "* الآلاف الكاملة (التفكيك والتركيب)\nحساب ذهني: الصيغة القانونية لعدد", "session_goals": "يحل المتعلم وضعيات بتوظيف تفكيك وتركيب الآلاف الكاملة."}, {"day": "07", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "الآلاف الكاملة (المقارنة / الترتيب)\nحساب ذهني: ضعف عقد / مائة كاملة", "session_goals": "* يقارن المتعلّم آلاف كاملة ويرتبّها"}, {"day": "08", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "الآلاف الكاملة (المقارنة / الترتيب)\nحساب ذهني: ضعف عقد / مائة كاملة", "session_goals": "* يحلّ المتعلم وضعيات بتوظيف مقارنة أو ترتيب الآلاف الكاملة."}, {"day": "09", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "الطرح بالزيادة ( 2 )\nحساب ذهني: الفرق بين عددين أحدهما ذو رقمين والآخر ذو رقم واحد", "session_goals": "يتعرّف المتعلّم آلية الطرح بالزيادة"}, {"day": "10", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "الطرح بالزيادة ( 2 )\nحساب ذهني: الفرق بين عددين أحدهما ذو رقمين والآخر ذو رقم واحد", "session_goals": "يحلّ المتعلم وضعيات بتوظيف الطرح بالزيادة"}, {"day": "11", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة.", "contents": "التدريب على حلّ المسائل. المسألة التامة/ المسألة الناقصة", "session_goals": "* يحلّ المتعلّم مسألة بعد التأكد من تمام معطياتها"}, {"day": "12", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "الأعداد ذات 4 أرقام (تكوينها/ كتابتها وقراءتها)", "session_goals": "يكوّن المتعلّم الأعداد ذات 4 أرقام"}, {"day": "13", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "الأعداد ذات 4 أرقام (تكوينها/ كتابتها وقراءتها)", "session_goals": "يكتب المتعلم ويقرأ الأعداد ذات 4 أرقام"}, {"day": "14", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "يتصرّف المتعلّم في الوحدات التي تقيس الأطوال والسعات والكتل.", "contents": "أتعرّف العلاقة بين المتر والدسيمتر والصنتيمتر", "session_goals": "يتعرّف المتعلّم العلاقة بين المتر والدسيمتر والصنتيمتر"}, {"day": "15", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "يتصرّف المتعلّم في الوحدات التي تقيس الأطوال والسعات والكتل.", "contents": "أتعرّف العلاقة بين المتر والدسيمتر والصنتيمتر", "session_goals": "يحلّ المتعلّم وضعيّات بتوظيف العلاقة بين المتر والدسيمتر والصنتيمتر"}, {"day": "16", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "التصرّف في المسالك على الشبكة.", "contents": "المسالك المتكافئة (التعرّف / الرسم والتوظيف ).", "session_goals": "يتعرّف المتعلّم مسالك متكافئة على الشبكة."}, {"day": "17", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "التصرّف في المسالك على الشبكة.", "contents": "المسالك المتكافئة (التعرّف / الرسم والتوظيف).", "session_goals": "يرسم المتعلّم مسالك متكافئة على الشبكة لمسلك معلوم."}, {"day": "18", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "انجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "التدريب على حلّ المسائل (طرح سؤال تتطلّب الإجابة عنه خطوتيْن)", "session_goals": "يطرح المتعلّم سؤالا تتطلب الإجابة عنه مرحلتيْن لحلّ مسألة"}], "evaluation": {"activity": "رياضيات", "expected_performance": "في نهاية الفترة الثانية يكون المتعلّم قادرا على حلّ مسائل ذات دلالة بالنّسبة إليه تتضمّن أسئلة تستوجب الإجابة عن كلّ منها مرحلة واحدة وتتطلّب:\n*إجراء عمليات طرح بالزيادة\n*مقارنة وترتيب الآلاف الكاملة\n*رسم المسالك على الشبكة"}}, "3": {"sessions": [{"day": "01", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "أكوّن الأعداد ذات 4 أرقام (بعض أرقامها صفر) وأكتبها وأقرؤها\nحساب ذهني: الفرق بين عددين أصغر العددين عقد", "session_goals": "* يكون المتعلم الأعداد ذات 4 أرقام (بعض أرقامها صفر)"}, {"day": "02", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "أكوّن الأعداد ذات 4 أرقام (بعض أرقامها صفر) وأكتبها وأقرؤها\nحساب ذهني: الفرق بين عددين أصغر العددين عقد", "session_goals": "يكتب ويقرأ المتعلم الأعداد ذات 4 أرقام (بعض أرقامها صفر)"}, {"day": "03", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* تصنيف المضلعات", "contents": "أرسم المضلعات على الشبكة وأصنفها", "session_goals": "* يرسم المتعلم المضلعات على الشبكة"}, {"day": "04", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "* تصنيف المضلعات", "contents": "أرسم المضلعات على الشبكة وأصنفها", "session_goals": "*يصنف المتعلم المضلعات المرسومة على الشبكة"}, {"day": "05", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "* أفكك الأعداد ذات 4 أرقام وأركبها\nحساب ذهني: الفرق بين عددين أصغر العددين مائة كاملة", "session_goals": "* يفكك المتعلّم الأعداد ذات 4 أرقام"}, {"day": "06", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "* أفكك الأعداد ذات 4 أرقام وأركبها\nحساب ذهني: الفرق بين عددين أصغر العددين مائة كاملة", "session_goals": "يركب المتعلم الأعداد ذات 4 أرقام"}, {"day": "07", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أتعرّف فكرة جذاء عددين", "session_goals": "* يتعرف المتعلم فكرة الجذاء"}, {"day": "08", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أتعرّف فكرة جذاء عددين", "session_goals": "* يوظّف المتعلّم فكرة الجذاء لحلّ وضعية دالّة"}, {"day": "09", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "التدريب على حل المسائل (طرح سؤال والإجابة عنه)", "session_goals": "يطرح المتعلّم سؤالا يناسب وضعية مقترحة عليه ثم يجيب عنه."}, {"day": "10", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "أقارن الأعداد ذات 4 أرقام وأرتّبها\nحساب ذهني: الفرق بين عددين أصغر العددين ألف كاملة", "session_goals": "يقارن المتعلم الأعداد ذات 4 أرقام"}, {"day": "11", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد بين 0 و999999 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا.", "contents": "أقارن الأعداد ذات 4 أرقام وأرتّبها\nحساب ذهني: الفرق بين عددين أصغر العددين ألف كاملة", "session_goals": "يرتّب المتعلم الأعداد ذات 4 أرقام"}, {"day": "12", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين (كل منها أصغر من 6)\nحساب ذهني: جذاء عددين كل منهما أصغر من 10", "session_goals": "يتعرّف المتعلّم الخاصية التبديلية لضرب جذاء عددين كل منهما أصغر من6."}, {"day": "13", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين (كل منها أصغر من 6)\nحساب ذهني: جذاء عددين كل منهما أصغر من 10", "session_goals": "يوظّف المتعلّم الخاصية التبديلية لضرب جذاء عددين كل منهما أصغر من 6. لحلّ وضعية دالّة."}, {"day": "14", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في القطع النقدية والأوراق المالية في نطاق الأعداد المدروسة.", "contents": "أتصرّف في القطع النقديّة والورقة الماليّة من فئة 5د (1)", "session_goals": "يتعرّف المتعلّم القطعة النقدية والورقة المالية من فئة 5د"}, {"day": "15", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في القطع النقدية والأوراق المالية في نطاق الأعداد المدروسة.", "contents": "أتصرّف في القطع النقديّة والورقة الماليّة من فئة 5د (1)", "session_goals": "يتصرّف المتعلّم في القطعة النقدية والورقة المالية من فئة 5د لحلّ وضعيات دالّة."}, {"day": "16", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين (أحدهما عقد / مائة كاملة ألف كاملة)\nحساب ذهني: جذاء عددين أحدهما 10،100،1000", "session_goals": "يتعرّف المتعلّم آلية الضرب في عقد أو مائة كاملة أو ألف كاملة"}, {"day": "17", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين (أحدهما عقد / مائة كاملة ألف كاملة)\nحساب ذهني: جذاء عددين أحدهما 10،100،1000", "session_goals": "يوظّف المتعلّم الضرب في عقد أو مائة كاملة أو ألف كاملة لحلّ وضعيات دالّة"}, {"day": "18", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليتيْ الجمع بالاحتفاظ والطرح بالزيادة", "contents": "التدريب على حلّ المسائل (تنظيم المعطيات و التمييز بينها)", "session_goals": "ينظّم المتعلّم معطيات مسالة ويميّز بينها ثمّ يحرر حلّها."}], "evaluation": {"activity": "رياضيات", "expected_performance": "في نهاية الفترة الثالثة يكون المتعلّم قادرا على حلّ مسائل ذات دلالة بالنّسبة إليه تتطلّب:\n*التصرف في الأعداد ذات 4 أرقام\n*توظيف خاصيات الضرب في حساب جذاء عددين\n*التصرّف في القطع النقديّة والورقة الماليّة من فئة 5د\n* رسم المضلعات على الشبكة وتصنيفها"}}, "4": {"sessions": [{"day": "01", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد الأصغر من 1000000 تكوينا وقراءة وكتابة وتمثيلا وتفكيكا وتركيبا ومقارنة وترتيبا", "contents": "أتصرّف في الأعداد ذات 4 أرقام\nحساب ذهني: الفرق بين عددين أصغرهما ألف كاملة", "session_goals": "* يتصرّف المتعلّم في الأعداد ذات 4 أرقام لحلّ وضعية مألوفة بالنسبة إليه."}, {"day": "02", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أنجز عمليّة الضرب\nحساب ذهني: نصف عدد أصغر من 100", "session_goals": "*يتعرّف المتعلّم آليّة الضرب في رقم واحد"}, {"day": "03", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أنجز عمليّة الضرب\nحساب ذهني: نصف عدد أصغر من100", "session_goals": "* يوظّف المتعلّم عملية الضرب في رقم واحد لحلّ وضعيات دالّة."}, {"day": "04", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل", "contents": "أتعرّف مضاعفات المتر\nحساب ذهني: مضاعفات عدد أصغر من 10", "session_goals": "* يتعرّف المتعلّم مضاعفات المتر وينجز تحويلات"}, {"day": "05", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل.", "contents": "أتعرّف مضاعفات المتر\nحساب ذهني: مضاعفات عدد أصغر من 10", "session_goals": "يتصرّف المتعلّم في مضاعفات المتر لحلّ وضعيات دالّة."}, {"day": "06", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل.", "contents": "أتعرّف مضاعفات اللتر\nحساب ذهني: مضاعفات عدد أصغر من 10", "session_goals": "* يتعرّف المتعلّم مضاعفات اللتر وينجز تحويلات"}, {"day": "07", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل.", "contents": "أتعرّف مضاعفات اللتر\nحساب ذهني: مضاعفات عدد أصغر من 10", "session_goals": "يتصرّف المتعلّم في مضاعفات اللتر لحلّ وضعيات دالّة."}, {"day": "08", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "رسم الزوايا بأنواعها", "contents": "أتعرف الزاوية وأرسمها", "session_goals": "* يتعرّف المتعلّم مفهوم الزاوية ونوعها"}, {"day": "09", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "رسم الزوايا بأنواعها", "contents": "أتعرف الزاوية وأرسمها", "session_goals": "*يرسم المتعلّم الزوايا بأنواعها."}, {"day": "10", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عملية ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين أحدهما أصغر من 6", "session_goals": "* يتعرّف المتعلّم آلية الضرب"}, {"day": "11", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عملية ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين أحدهما أصغر من 6", "session_goals": "*يوظّف المتعلّم عملية الضرب لحلّ وضعيات دالّة"}, {"day": "12", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرف في القطع النقدية والأوراق المالية في نطاق الأعداد المدروسة.", "contents": "أتصرف في القطعة النقدية والورقة المالية 5د", "session_goals": "يتصرّف المتعلّم في الورقة المالية والقطعة النقدية 5د لحل وضعيات دالّة."}, {"day": "13", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "رسم الزوايا بأنواعها", "contents": "أصنّف الزوايا", "session_goals": "يصنف المتعلم الزوايا حسب قيس فتحتها ويرسمها"}, {"day": "14", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "التصرّف في الأعداد المدروسة بتوظيف الجمع والطرح الضرب", "contents": "التدريب على حلّ المسائل (اختيار العملية المناسبة للسؤال المناسب)", "session_goals": "يختار المتعلّم نوع العملية المناسبة وينجزها لحلّ مسألة موظفا الجمع والطرح والضرب"}], "evaluation": {"activity": "رياضيات", "expected_performance": "في نهاية الفترة الرابعة يكون المتعلّم قادرا على حلّ مسائل ذات دلالة بالنّسبة إليه تتطلّب:\n*التصرف في الأعداد ذات 4 أرقام\n*توظيف الضرب\n*التصرّف في مضاعفات المتر ومضاعفات اللتر\n*التصرّف في القطعة النقديّة والورقة الماليّة من فئة 5د\n* رسم الزوايا وتصنيفها حسب فتحتها"}}, "5": {"sessions": [{"day": "01", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين\nحساب ذهني: جذاء عددين", "session_goals": "* يتصرّف المتعلّم في الأعداد ذات 4 أرقام لحلّ وضعية مألوفة بالنسبة إليه."}, {"day": "02", "activity": "رياضيات", "competency": "حل وضعيات مشكل دالة بتوظيف العمليات على الأعداد", "distinctive_goals": "إنجاز عمليّة ضرب", "contents": "أوظف خاصيات الضرب في حساب جذاء عددين\nحساب ذهني: جذاء عددين", "session_goals": "*يتعرّف المتعلّم آلية الضرب في رقم واحد"}, {"day": "03", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل.", "contents": "أتصرف في العلاقة العشرية بين وحدات القيس (الأطوال)\nحساب ذهني: تحويلات في نطاق وحدات القيس", "session_goals": "* يتصرف في العلاقة العشرية بين وحدات قيس الأطوال"}, {"day": "04", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "التصرّف في وحدات قيس الأطوال والسعات والكتل", "contents": "أتصرف في العلاقة العشرية بين وحدات القيس (السعات)\nحساب ذهني: تحويلات في نطاق وحدات القيس", "session_goals": "* يتصرف في العلاقة العشرية بين وحدات قيس السعات"}, {"day": "05", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "تعرف المستطيل والمربّع", "contents": "أتعرّف خاصيات المستطيل", "session_goals": "يتعرّف المتعلّم خاصيات المستطيل ويرسمه."}, {"day": "06", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "تعرف المستطيل والمربّع", "contents": "أتعرّف خاصيات المربّع", "session_goals": "يتعرّف المتعلّم خاصيات المربع ويرسمه."}, {"day": "07", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "تحديد الزمن.", "contents": "العلاقة بين اليوم والأسبوع والسنة.", "session_goals": "يتعرّف المتعلّم العلاقة بين اليوم الشهر والسنة لتحديد مدد زمنية."}, {"day": "08", "activity": "رياضيات", "competency": "حلّ وضعيات مشكل دالة بالتصرف في المقادير", "distinctive_goals": "تحديد الزمن", "contents": "العلاقة بين اليوم والأسبوع والسنة.", "session_goals": "* يحل المتعلم وضعيات دالة بتوظيف العلاقة بين اليوم والأسبوع والسنة."}, {"day": "09", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "حساب محيط كل من المستطيل والمربّع", "contents": "أحسب قيس محيط مضلّع", "session_goals": "* يتعرّف المتعلّم فكرة المحيط ويحسبه من خلال مضلع."}, {"day": "10", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "حساب محيط كل من المستطيل والمربّع", "contents": "حساب قيس محيط المستطيل\nحساب ذهني: قيس محيط مستطيل", "session_goals": "* يحسب المتعلّم محيط المستطيل"}, {"day": "11", "activity": "رياضيات", "competency": "حلّ وضعيّات مشكل دالّة بتوظيف خاصيّات الأشكال الهندسيّة", "distinctive_goals": "حساب محيط كل من المستطيل والمربّع", "contents": "حساب قيس محيط المربع\nحساب ذهني: قيس محيط مربع", "session_goals": "* يحسب المتعلّم محيط المربع"}], "evaluation": {"activity": "رياضيات", "expected_performance": "في نهاية الفترة الخامسة يكون المتعلّم قادرا على حلّ مسائل ذات دلالة بالنّسبة إليه تتطلّب:\n*توظيف خاصيات الضرب في حساب جذاء عددين\n*تحديد الزمن بتوظيف العلاقة بين اليوم والأسبوع والسنة\n*حساب محيط كل من المستطيل والمربع"}}}, "science": {"1": {"sessions": [{"day": "01", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "تبيّن حاجة الحيوان والإنسان إلى التنقل", "contents": "* حاجة الإنسان والحيوان إلى التنقّل.", "session_goals": "* يكون المتعلّم قادرا على تعرّف دوافع الإنسان والحيوان إلى التنقّل."}, {"day": "02", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "تمييز الأحداث الدورية", "contents": "* الأحداث الدورية والأحداث غير دورية.", "session_goals": "* يكون المتعلّم قادرا على تعرّف الأحداث الدورية وتمييزها."}, {"day": "03", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "ربط العلاقة بين الوسط ونمط التنقّل.", "contents": "أنماط التنقّل في البرّ", "session_goals": "* يكون المتعلّم قادرا على تعرّف أنماط التنقّل في البرّ والعلاقة بين عضو التنقّل والوسط الذي يحدث فيه."}, {"day": "04", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنيّة باعتماد ظاهرة دوريّة مألوفة.", "contents": "تقدير فترة زمنية باعتماد ظاهرة دورية مألوفة.", "session_goals": "* يكون المتعلّم قادرا على تقدير قيس مدّة زمنية باعتماد ظاهرة دورية مألوفة"}, {"day": "05", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "ربط العلاقة بين الوسط ونمط التنقّل.", "contents": "* التنقّل في الماء", "session_goals": "* يكون المتعلّم قادرا على تعرّف نمط التنقّل في الماء والأعضاء المكيّفة لذلك."}, {"day": "06", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنيّة باعتماد ظاهرة دوريّة مألوفة", "contents": "* النوّاس", "session_goals": "* يكون المتعلّم قادرا على تقدير قيس مدّة زمنية باعتماد النوّاس."}, {"day": "07", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* ربط العلاقة بين الوسط ونمط التنقّل", "contents": "* التنقّل في الجو", "session_goals": "* يكون المتعلّم قادرا على تعرّف نمط التنقّل في الجو والأعضاء المكيّفة لذلك."}, {"day": "08", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنيّة باعتماد ظاهرة دوريّة مألوفة.", "contents": "السّاعة الرملية", "session_goals": "* يكون المتعلّم قادرا على قيس مدد زمنية باعتماد السّاعة الرملية."}, {"day": "09", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنيّة باعتماد ظاهرة دوريّة مألوفة", "contents": "السّاعة المائية", "session_goals": "* يكون المتعلّم قادرا على قيس مدد زمنية باعتماد السّاعة الرملية"}, {"day": "10", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنية باستعمال السّاعة.", "contents": "* السّاعة ذات العقارب", "session_goals": "* يكون المتعلّم قادرا على قراءة توقيت ورسمه باعتماد السّاعة ذات العقارب."}, {"day": "11", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة.", "distinctive_goals": "* قيس مدّة زمنية باستعمال السّاعة", "contents": "* السّاعة ذات الخانات.", "session_goals": "* يكون المتعلّم قادرا على قراءة توقيت ورسمه باعتماد السّاعة ذات الخانات."}], "evaluation": {"activity": "إيقاظ علمي", "expected_performance": "في نهاية الفترة الأولى يكون المتعلّم قادرا على حلّ وضعيّات تتّصل بالتنقّل والزّمن في وضعيّة ذات دلالة."}}, "2": {"sessions": [{"day": "01", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "تعرّف مصادر الأغذية.", "contents": "* التغذية (مصادرها: حيواني – نباتي ).", "session_goals": "* يكون المتعلّم قادرا على تصنيف الأغذية حسب مصدرها حيواني أو نباتي."}, {"day": "02", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "تعرّف مصادر الأغذية", "contents": "* تنويع الأغذية بالنسبة للإنسان", "session_goals": "* يكون المتعلّم قادرا على تعرّف ضرورة تنويع الأغذية في حياة الإنسان."}, {"day": "03", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعرّف مصادر بعض الطاقات.", "contents": "التأثير الظاهر للقوّة", "session_goals": "* يكون المتعلّم قادرا على إدراك أن تحريك الأجسام وإيقافها وتغيير اتجاهها وتغيير شكلها تكون بمفعول قوّة"}, {"day": "04", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* تصنيف الحيوانات حسب نوع الغذاء الذي تعيش عليه", "contents": "التغذية عند الحيوان ( عاشب / لاحم / كالش )", "session_goals": "* يكون المتعلّم قادرا على تصنيف الحيوانات حسب نوعية الغذاء الذي تعيش عليه."}, {"day": "05", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعرّف مصادر بعض الطاقات", "contents": "* سقوط الأجسام.", "session_goals": "* يكون المتعلّم قادرا على إدراك أن الجسم عندما يكون في حالة سقوط قادر على تحريك جسم آخر."}, {"day": "06", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* تبيّن حاجة النبات إلى الغذاء", "contents": "* حاجة النّبات إلى الغذاء", "session_goals": "* يكون المتعلّم قادرا على تعرّف أهميّة الماء في حياة النبتة."}], "evaluation": {"activity": "إيقاظ علمي", "expected_performance": "في نهاية الفترة الثانية يكون المتعلّم قادرا على حلّ وضعيّات تتّصل بالتغذية والطاقة في وضعيّة ذات دلالة."}}, "3": {"sessions": [{"day": "01", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "إثبات حصول عمل بتسليط قوّة وحصول إزاحة.", "contents": "* شروط حصول عمل (تسليط القوة وحصول إزاحة)", "session_goals": "* يكون المتعلّم قادرا على تعرّف شروط حصول عمل."}, {"day": "02", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "إدراك أن جميع الكائنات الحية تتكاثر.", "contents": "التكاثر عند النبات. (التكاثر الزهري)", "session_goals": "* يكون المتعلّم قادرا على تعرّف كيفيّة التكاثر الزهري عند النبات."}, {"day": "03", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تمييز القوى التي ينتج عنها عمل من القوى التي لا ينتج عنها عمل.", "contents": "العمل", "session_goals": "* يكون المتعلّم قادرا على تعرّف الأنشطة التي ينتج عنها عمل."}, {"day": "04", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* إدراك أن للكائنات الحيّة أنماط لتكاثرها", "contents": "التكاثر عند الحيوانات البيوضة", "session_goals": "* يكون المتعلّم قادرا على تعرّف الحيوانات التي تتكاثر بالبيض."}, {"day": "05", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تصنيف بعض الطاقات", "contents": "* مفهوم الطاقة.", "session_goals": "* يكون المتعلّم قادرا على إدراك أن الجسم الذي ينجز عملا يملك طاقة."}, {"day": "06", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* إدراك أن للكائنات الحيّة أنماط لتكاثرها", "contents": "* التكاثر عند الحيوانات الولودة.", "session_goals": "* يكون المتعلّم قادرا على تعرّف الحيوانات التي تتكاثر بالولادة.."}, {"day": "07", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تصنيف بعض الطاقات", "contents": "أنواع الطاقة.", "session_goals": "يكون المتعلّم قادرا على التمييز بين أنواع الطاقة"}], "evaluation": {"activity": "إيقاظ علمي", "expected_performance": "في نهاية الفترة الثالثة يكون المتعلّم قادرا على حلّ وضعيّات تتّصل بالتكاثر والطاقة في وضعيّة ذات دلالة."}}, "4": {"sessions": [{"day": "01", "activity": "إيقاظ علمي", "competency": "* حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "تبيّن كيفية التنفس.", "contents": "* التنفّس (الشهيق والزفير).", "session_goals": "* يكون المتعلّم قادرا على تعرّف مميزات طوريْ التنفّس الشهيق والزفير"}, {"day": "02", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعيين الحالة الفيزيائية التي توجد عليها المادّة في الحالة الطبيعية", "contents": "حالات المادّة في الطبيعة.", "session_goals": "* يكون المتعلّم قادرا على تعرّف الحالات الفيزيائية للمادة في الطبيعة.."}, {"day": "03", "activity": "إيقاظ علمي", "competency": "حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "تبيّن كيفية التنفس.", "contents": "القواعد الصحيّة للتنفّس", "session_goals": "* يكون المتعلّم قادرا على تعرّف القواعد الصحيّة للتنفّس."}, {"day": "04", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* إدراك بعض الأمراض التي تصيب الكائنات الحيّة", "contents": "مرض الرّمد", "session_goals": "* يكون المتعلّم قادرا على تعرّف أعراض مرض الرّمد وطرق الوقاية منه."}, {"day": "05", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعيين الحالة الفيزيائية التي توجد عليها المادّة في الحالة الطبيعية", "contents": "التبخّر والغليان..", "session_goals": "* يكون المتعلّم قادرا على تعرّف حالات المادة انطلاقا من غليان الماء وتبخّره"}, {"day": "06", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "* إدراك بعض الأمراض التي تصيب الكائنات الحيّة أنماط لتكاثرها", "contents": "مرض الكلب", "session_goals": "* يكون المتعلّم قادرا على تعرّف أعراض مرض الكلب وطرق الوقاية منه."}, {"day": "07", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعيين الحالة الفيزيائية التي توجد عليها المادّة في الحالة الطبيعية.", "contents": "الإسالة", "session_goals": "يكون المتعلّم قادرا على تعرّف الظاهرة الفيزيائية للإسالة وتقديم أمثلة لاستعمالاتها في الحياة العامة"}, {"day": "08", "activity": "إيقاظ علمي", "competency": "حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "إدراك أهمية الشجرة في الحياة", "contents": "حماية البيئة ومقاومة التلوّث", "session_goals": "يكون المتعلّم قادرا على تعرّف طرائق حماية البيئة ومقاومة تلوث الماء والهواء والتربة"}, {"day": "09", "activity": "إيقاظ علمي", "competency": "*حلّ وضعيّات مشكل دالّة وإنجاز بحوث ومشاريع متّصلة ببعض الظواهر الفيزيائيّة", "distinctive_goals": "تعيين الحالة الفيزيائية التي توجد عليها المادّة في الحالة الطبيعية", "contents": "الانصهار والتجمّد.", "session_goals": "يكون المتعلّم قادرا على شرح ظاهرتيْ الانصهار والتجمّد."}, {"day": "10", "activity": "إيقاظ علمي", "competency": "حلّ وضعيّات مشكل دالّة بإنجاز بحوث ومشاريع متّصلة بالوظائف الحيويّة للكائنات الحيّة في علاقتها بالمحيط", "distinctive_goals": "إدراك أهمية الشجرة في الحياة", "contents": "أهمية الشجرة", "session_goals": "يكون المتعلّم قادرا على تعرّف أهمية الشجرة وفوائدها وضرورة حمايتها"}], "evaluation": {"activity": "إيقاظ علمي", "expected_performance": "في نهاية الفترة الرابعة يكون المتعلّم قادرا على حلّ وضعيّات تتّصل بالتنفس، الوقاية من الأمراض، حماية المحيط والمادّة في وضعيّة ذات دلالة."}}}};
+const SUBJECTS = {math:{name:'الرياضيات',act:'رياضيات'}, science:{name:'الإيقاظ العلمي',act:'إيقاظ علمي'}};
+const ORD = ['','الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة'];
+const PCOLORS = ['#7cb342','#2f86c9','#e0474c','#f29b30','#8e6bbf','#15a39a'];
+const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+const ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 6v8M12 18.5v.01"/></svg>';
+const ICON_CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 01-7.8-7.8l8.6-8.6a3.7 3.7 0 015.2 5.2l-8.6 8.6a1.8 1.8 0 01-2.6-2.6L15 7"/></svg>';
+const ICON_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const ICON_CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+
+/* ---------- storage ---------- */
+const LS_KEY='tunistracker.v1';
+function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let state = lsGet(LS_KEY,{status:{},ui:{}});
+state.status ||= {}; state.ui ||= {};
+const save=()=>lsSet(LS_KEY,state);
+
+// IndexedDB for attachments
+let dbp=null;
+function db(){ if(dbp) return dbp; dbp=new Promise((res,rej)=>{ try{
+  const r=indexedDB.open('tunistracker',1);
+  r.onupgradeneeded=()=>{const s=r.result.createObjectStore('files',{keyPath:'id'}); s.createIndex('evalKey','evalKey')};
+  r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error);
+ }catch(e){rej(e)} }); return dbp; }
+async function filesFor(evalKey){ try{ const d=await db(); return await new Promise((res,rej)=>{const t=d.transaction('files').objectStore('files').index('evalKey').getAll(evalKey);t.onsuccess=()=>res(t.result);t.onerror=()=>rej(t.error)}) }catch(e){return []} }
+async function allFiles(){ try{ const d=await db(); return await new Promise((res,rej)=>{const t=d.transaction('files').objectStore('files').getAll();t.onsuccess=()=>res(t.result);t.onerror=()=>rej(t.error)}) }catch(e){return []} }
+async function putFile(rec){ const d=await db(); return new Promise((res,rej)=>{const t=d.transaction('files','readwrite');t.objectStore('files').put(rec);t.oncomplete=res;t.onerror=()=>rej(t.error)}) }
+async function delFile(id){ const d=await db(); return new Promise((res,rej)=>{const t=d.transaction('files','readwrite');t.objectStore('files').delete(id);t.oncomplete=res;t.onerror=()=>rej(t.error)}) }
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const keyOf=(sub,p,day)=>`${sub}-${p}-${day}`;
+const stripHarakat=s=>(s||'').replace(/[ً-ْـ*]/g,'').replace(/\s+/g,' ').trim();
+const toAr=n=>String(n);
+function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso); return d.toLocaleDateString('ar-TN',{day:'numeric',month:'long'}); }
+function fmtSize(b){ return b<1024*1024? Math.max(1,Math.round(b/1024))+' ك.ب' : (b/1048576).toFixed(1)+' م.ب'; }
+function cellHTML(t){ // render lines; "حساب ذهني" lines as muted note
+  return esc(t).split('\n').map(l=> /^حساب ذهني/.test(l)? `<span class="note">${l}</span>` : l).join('\n');
+}
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),1800); }
+
+function stats(sub,p){
+  const periods = p? [p] : Object.keys(PLAN[sub]);
+  let total=0,ok=0,sup=0;
+  for(const pp of periods){ for(const s of PLAN[sub][pp].sessions){ total++; const st=state.status[keyOf(sub,pp,s.day)]?.s; if(st==='ok')ok++; else if(st==='sup')sup++; } }
+  return {total,ok,sup,left:total-ok-sup,pct: total? Math.round((ok+sup)/total*100):0};
+}
+function allStats(){ const a=stats('math'),b=stats('science'); const total=a.total+b.total,ok=a.ok+b.ok,sup=a.sup+b.sup; return {total,ok,sup,left:total-ok-sup,pct:Math.round((ok+sup)/total*100)}; }
+const barHTML=st=>`<div class="bar" role="img" aria-label="${st.ok} تم الاستيعاب، ${st.sup} يحتاج إلى دعم، ${st.left} متبقية"><i class="b-ok" style="width:${st.total?st.ok/st.total*100:0}%"></i><i class="b-sup" style="width:${st.total?st.sup/st.total*100:0}%"></i></div>`;
+
+/* ---------- UI state ---------- */
+let current = state.ui.tab || 'math';
+let filter = state.ui.filter || 'all';
+state.ui.collapsed ||= {};
+const isMobile=()=>matchMedia('(max-width:900px)').matches;
+
+function renderSummary(){
+  const A=allStats(), m=stats('math'), s=stats('science');
+  $('#summary').innerHTML = `
+   <div class="card stat big"><div class="k">التقدم العام (${A.ok+A.sup} من ${A.total} حصة)</div><div class="v">${A.pct}٪</div>${barHTML(A)}
+     <div class="legend"><span class="l-ok">تم الاستيعاب</span><span class="l-sup">يحتاج إلى دعم</span><span>لم تُنجز بعد</span></div></div>
+   <div class="card stat ok"><div class="k">تم الاستيعاب</div><div class="v">${A.ok}</div><div class="k">رياضيات ${m.ok} · إيقاظ ${s.ok}</div></div>
+   <div class="card stat sup"><div class="k">يحتاج إلى دعم</div><div class="v">${A.sup}</div><div class="k">رياضيات ${m.sup} · إيقاظ ${s.sup}</div></div>
+   <div class="card stat"><div class="k">حصص متبقية</div><div class="v">${A.left}</div><div class="k">رياضيات ${m.left} · إيقاظ ${s.left}</div></div>`;
+}
+function renderTabs(){
+  $('#tabs').innerHTML = Object.keys(SUBJECTS).map(k=>`<button class="tab" role="tab" data-tab="${k}" aria-selected="${k===current}">${SUBJECTS[k].name}<span class="pct">${stats(k).pct}٪</span></button>`).join('');
+}
+function renderFilters(){
+  const st=stats(current);
+  const F=[['all','الكل',st.total],['left','لم تُنجز',st.left],['sup','يحتاج إلى دعم',st.sup],['ok','تم الاستيعاب',st.ok]];
+  $('#filters').innerHTML = F.map(([k,l,n])=>`<button class="chip" data-filter="${k}" aria-pressed="${k===filter}">${l}<span class="n">${n}</span></button>`).join('');
+}
+function renderPeriodNav(){
+  $('#periodNav').innerHTML = Object.keys(PLAN[current]).map((p,i)=>{ const st=stats(current,p);
+    return `<button class="pjump ${st.left===0?'done':''}" style="--pc:${PCOLORS[i%PCOLORS.length]}" data-jump="${current}-${p}"><b>الفترة ${ORD[p]||p}</b><small>${st.ok+st.sup}/${st.total}</small>${barHTML(st)}</button>`}).join('');
+}
+function passes(st){ if(filter==='all')return true; if(filter==='left')return !st; return st===filter; }
+
+function periodHeadInner(sub,p){
+  const st=stats(sub,p);
+  return `<h2>الفترة ${ORD[p]||p}<small>${SUBJECTS[sub].name}</small></h2>
+    ${st.left===0?'<span class="badge-done">مكتملة</span>':''}
+    <div class="p-prog">${barHTML(st)}<div class="p-count"><span>${st.ok+st.sup} من ${st.total} حصة (${st.pct}٪)</span><span class="c-ok">✓ ${st.ok} تم الاستيعاب</span><span class="c-sup">! ${st.sup} يحتاج إلى دعم</span></div></div>${ICON_CHEV}`;
+}
+
+function rowHTML(sub,p,s,spans){
+  const k=keyOf(sub,p,s.day), rec=state.status[k], st=rec?.s;
+  const cls = st==='ok'?'is-ok':st==='sup'?'is-sup':'';
+  let h=`<tr class="s-row ${cls}" data-key="${k}">`;
+  if(spans.act) h+=`<td class="act" rowspan="${spans.act}">${esc(s.activity||SUBJECTS[sub].act)}</td>`;
+  if(spans.comp) h+=`<td class="comp" data-l="مكوّن الكفاية" rowspan="${spans.comp}">${cellHTML(s.competency)}</td>`;
+  h+=`<td class="day" data-l="اليوم">${esc(s.day)}</td>
+    <td class="goal" data-l="الأهداف المميّزة">${cellHTML(s.distinctive_goals)}</td>
+    <td class="cont" data-l="المحتويات">${cellHTML(s.contents)}</td>
+    <td class="sess" data-l="أهداف الحصص">${cellHTML(s.session_goals)}</td>
+    <td class="st"><div class="stbtns">
+      <button class="sbtn ok" data-set="ok" aria-pressed="${st==='ok'}"><span class="box">${ICON_CHECK}</span>تم الاستيعاب</button>
+      <button class="sbtn sup" data-set="sup" aria-pressed="${st==='sup'}"><span class="box">${ICON_FLAG}</span>يحتاج إلى دعم</button>
+    </div>${rec?.d?`<div class="stamp">${fmtDate(rec.d)}</div>`:''}</td></tr>`;
+  return h;
+}
+
+function tableHTML(sub,p){
+  const list = PLAN[sub][p].sessions.filter(s=>passes(state.status[keyOf(sub,p,s.day)]?.s));
+  if(!list.length) return `<div class="tbl-wrap"><div class="empty">لا توجد حصص في هذا التصنيف.</div></div>`;
+  const merge = filter==='all' && !isMobile();
+  // rowspans for competency (consecutive equal) like the book
+  const compSpan = new Array(list.length).fill(0);
+  if(merge){ for(let i=0;i<list.length;){ let j=i+1; while(j<list.length && stripHarakat(list[j].competency)===stripHarakat(list[i].competency)) j++; compSpan[i]=j-i; i=j; } }
+  else compSpan.fill(1);
+  let rows=list.map((s,i)=>rowHTML(sub,p,s,{act: merge? (i===0?list.length:0) : 1, comp: compSpan[i]})).join('');
+  return `<div class="tbl-wrap"><table><thead><tr><th>النشاط</th><th>مكوّن الكفاية</th><th>اليوم</th><th>الأهداف المميّزة</th><th>المحتويات</th><th>أهداف الحصص</th><th>الحالة</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function evalHTML(sub,p){
+  const e=PLAN[sub][p].evaluation; if(!e) return '';
+  const ek=`${sub}-${p}`;
+  return `<div class="eval"><div class="sec-label">التقييم</div><div class="tbl-wrap"><table><thead><tr><th>النشاط</th><th>الأداء المنتظر</th><th>ورقة التقييم</th></tr></thead>
+   <tbody><tr data-eval="${ek}"><td class="act">${esc(e.activity||SUBJECTS[sub].act)}</td><td class="perf" data-l="الأداء المنتظر">${esc(e.expected_performance)}</td>
+   <td class="att"><button class="attach-btn" data-attach="${ek}">${ICON_CLIP}إرفاق التقييم</button><ul class="files" data-files="${ek}"></ul></td></tr></tbody></table></div></div>`;
+}
+
+async function renderFiles(ek){
+  const ul=document.querySelector(`[data-files="${ek}"]`); if(!ul) return;
+  const files=await filesFor(ek); files.sort((a,b)=>a.added.localeCompare(b.added));
+  ul.innerHTML = files.map(f=>`<li><a href="#" data-open="${f.id}" title="${esc(f.name)}">${esc(f.name)}</a><span class="sz">${fmtSize(f.size)}</span><button class="x" data-del="${f.id}" aria-label="حذف">${ICON_X}</button></li>`).join('');
+  ul.closest('tr').classList.toggle('has-file', files.length>0);
+}
+
+function renderContent(){
+  const periods=Object.keys(PLAN[current]);
+  $('#content').innerHTML = periods.map((p,i)=>{
+    const id=`${current}-${p}`, col=!!state.ui.collapsed[id];
+    return `<section class="period ${col?'collapsed':''}" id="${id}" style="--pc:${PCOLORS[i%PCOLORS.length]}">
+      <div class="p-head" data-toggle="${id}" role="button" aria-expanded="${!col}">${periodHeadInner(current,p)}</div>
+      <div class="p-body"><div class="sec-label">التعلّم المنهجي</div>${tableHTML(current,p)}${evalHTML(current,p)}</div></section>`;
+  }).join('');
+  periods.forEach(p=>renderFiles(`${current}-${p}`));
+}
+
+function renderAll(){ renderSummary(); renderTabs(); renderFilters(); renderPeriodNav(); renderContent(); }
+function refreshCounts(sub,p){ // light update after a status change
+  renderSummary(); renderTabs(); renderFilters(); renderPeriodNav();
+  const head=document.querySelector(`[data-toggle="${sub}-${p}"]`); if(head) head.innerHTML=periodHeadInner(sub,p);
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', async e=>{
+  const t=e.target.closest('button,[data-toggle],a[data-open]'); if(!t) return;
+  if(t.dataset.tab){ current=t.dataset.tab; state.ui.tab=current; save(); renderAll(); window.scrollTo({top:0}); return; }
+  if(t.dataset.filter){ filter=t.dataset.filter; state.ui.filter=filter; save(); renderFilters(); renderContent(); return; }
+  if(t.dataset.jump){ const sec=document.getElementById(t.dataset.jump); if(sec){ if(sec.classList.contains('collapsed')){ state.ui.collapsed[t.dataset.jump]=false; save(); sec.classList.remove('collapsed'); } sec.scrollIntoView({behavior:'smooth'}); } return; }
+  if(t.dataset.toggle){ const id=t.dataset.toggle, sec=document.getElementById(id); const c=!sec.classList.contains('collapsed'); sec.classList.toggle('collapsed',c); t.setAttribute('aria-expanded',!c); state.ui.collapsed[id]=c; save(); return; }
+  if(t.dataset.set){
+    const tr=t.closest('tr'), k=tr.dataset.key, [sub,p]=k.split('-'), cur=state.status[k]?.s;
+    if(cur===t.dataset.set) delete state.status[k]; else state.status[k]={s:t.dataset.set,d:new Date().toISOString()};
+    save();
+    if(filter!=='all'){ renderContent(); refreshCounts(sub,p); return; }
+    const s=PLAN[sub][p].sessions.find(x=>keyOf(sub,p,x.day)===k);
+    const st=state.status[k]?.s;
+    tr.classList.toggle('is-ok',st==='ok'); tr.classList.toggle('is-sup',st==='sup');
+    tr.querySelectorAll('.sbtn').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===st));
+    const tdSt=tr.querySelector('td.st'); tdSt.querySelector('.stamp')?.remove();
+    if(state.status[k]) tdSt.insertAdjacentHTML('beforeend',`<div class="stamp">${fmtDate(state.status[k].d)}</div>`);
+    refreshCounts(sub,p); return;
+  }
+  if(t.dataset.attach){ const inp=$('#attachInput'); inp.dataset.target=t.dataset.attach; inp.value=''; inp.click(); return; }
+  if(t.dataset.del){ if(!confirm('حذف هذا المرفق؟')) return; const ek=t.closest('[data-files]').dataset.files; await delFile(t.dataset.del); renderFiles(ek); toast('تم حذف المرفق'); return; }
+  if(t.dataset.open){ e.preventDefault(); const f=(await allFiles()).find(x=>x.id===t.dataset.open); if(f){ const url=URL.createObjectURL(f.blob); const w=window.open(url,'_blank'); if(!w){ const a=document.createElement('a'); a.href=url; a.download=f.name; a.click(); } setTimeout(()=>URL.revokeObjectURL(url),60000);} return; }
+  if(t.id==='printBtn'){ window.print(); return; }
+  if(t.id==='exportBtn'){ exportBackup(); return; }
+  if(t.id==='importBtn'){ $('#importFile').click(); return; }
+});
+
+$('#attachInput').addEventListener('change', async e=>{
+  const ek=e.target.dataset.target, files=[...e.target.files]; if(!files.length) return;
+  try{
+    for(const f of files){ await putFile({id:ek+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,7), evalKey:ek, name:f.name, type:f.type, size:f.size, added:new Date().toISOString(), blob:f}); }
+    renderFiles(ek); toast(files.length>1?`تم إرفاق ${files.length} ملفات`:'تم إرفاق التقييم');
+  }catch(err){ toast('تعذّر حفظ المرفق على هذا المتصفح'); }
+});
+
+const b64=blob=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob)});
+async function exportBackup(){
+  const files=await allFiles(); const packed=[];
+  for(const f of files) packed.push({...f, blob:undefined, data:await b64(f.blob)});
+  const out={app:'TunisTracker',version:1,exported:new Date().toISOString(),status:state.status,files:packed};
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(out)],{type:'application/json'}));
+  a.download=`TunisTracker-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('تم تنزيل النسخة الاحتياطية');
+}
+$('#importFile').addEventListener('change', async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  try{ const d=JSON.parse(await f.text()); if(d.app!=='TunisTracker') throw 0;
+    if(!confirm('سيتم استبدال التقدم الحالي بمحتوى النسخة الاحتياطية. متابعة؟')) return;
+    state.status=d.status||{}; save();
+    for(const x of (d.files||[])){ const blob=await (await fetch(x.data)).blob(); await putFile({id:x.id,evalKey:x.evalKey,name:x.name,type:x.type,size:x.size,added:x.added,blob}); }
+    renderAll(); toast('تم استرجاع النسخة الاحتياطية');
+  }catch(err){ toast('الملف غير صالح'); }
+  e.target.value='';
+});
+let wasMobile=isMobile();
+addEventListener('resize',()=>{ if(isMobile()!==wasMobile){ wasMobile=isMobile(); renderContent(); } });
+
+renderAll();
+</script>
+</body>
+</html>
