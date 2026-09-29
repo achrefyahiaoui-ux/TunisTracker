@@ -117,6 +117,16 @@ td.goal{min-width:170px}
 td.cont{min-width:170px}
 td.sess{min-width:190px}
 td.st{width:196px;vertical-align:middle;background:var(--surface)}
+td.note-td{width:200px;vertical-align:top;background:var(--surface)!important;padding:8px}
+.tnote{width:100%;min-height:72px;resize:vertical;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px;line-height:1.6;background:var(--surface-2);color:var(--ink)}
+.tnote:focus{outline:2px solid var(--ok);outline-offset:0;background:var(--surface)}
+.tnote.has{background:color-mix(in srgb,#f2c14e 16%,var(--surface));border-color:#d9a92e}
+td.editable .ec{cursor:text;border-radius:6px;padding:2px 4px;margin:-2px -4px;min-height:1.6em;white-space:pre-line}
+td.editable .ec:hover{box-shadow:inset 0 0 0 1px var(--line)}
+td.editable .ec[contenteditable="true"]{background:var(--surface);box-shadow:inset 0 0 0 2px var(--ok);outline:none;cursor:text}
+.edtag{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9a6b00}
+.edtag .rst{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:6px;padding:1px 7px;font-size:11.5px}
+.edtag .rst:hover{color:var(--ink);border-color:var(--ink-3)}
 .note{display:block;color:var(--ink-3);font-size:12.5px}
 tr.s-row{transition:background .25s}
 tr.s-row.is-ok td:not(.act):not(.merged),tr.s-row.is-sup td:not(.act):not(.merged){background:var(--ok-bg)}
@@ -285,7 +295,7 @@ const LS_KEY='tunistracker.v1';
 function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let state = lsGet(LS_KEY,{status:{},ui:{}});
-state.status ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
+state.status ||= {}; state.notes ||= {}; state.edits ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
 const save=()=>lsSet(LS_KEY,state);
 
 let dbp=null;
@@ -393,12 +403,17 @@ function rowHTML(s,cols,spans,mergeable,i,actIdx,multiAct){
       const cls = c==='activity'?`act a${actIdx} ${ACTC[norm(s.activity)]||''}`: c==='competency'?'comp':'dg';
       h+=`<td class="${cls}${n>1?' merged':''}" ${c!=='activity'?`data-l="${LBL(c)}"`:''} rowspan="${n}">${cellHTML(s[c])}</td>`; continue; }
     if(c==='day'){ h+=`<td class="day" data-l="${LBL('day')}">${esc(s.day)||'—'}${multiAct?`<span class="actchip">${esc(s.activity)}</span>`:''}</td>`; continue; }
+    if(c==='contents'||c==='session_goals'){
+      const ed=state.edits[s.key]?.[c]; const val= ed!=null? ed : s[c];
+      h+=`<td class="${CLS[c]} editable${ed!=null?' edited':''}" data-l="${LBL(c)}" data-field="${c}"><div class="ec" data-field="${c}" title="انقر للتعديل">${cellHTML(val)}</div>${ed!=null?`<div class="edtag"><span>✎ معدّل</span><button class="rst" data-reset="${c}" title="استرجاع نص الكتاب">↺ نص الكتاب</button></div>`:''}</td>`;
+      continue; }
     h+=`<td class="${CLS[c]}" data-l="${LBL(c)}">${cellHTML(s[c])}</td>`;
   }
   h+=`<td class="st"><div class="stbtns">
       <button class="sbtn ok" data-set="ok" aria-pressed="${st==='ok'}"><span class="box">${ICON_CHECK}</span>تم الاستيعاب</button>
       <button class="sbtn sup" data-set="sup" aria-pressed="${st==='sup'}"><span class="box">${ICON_FLAG}</span>يحتاج إلى دعم</button>
-    </div>${rec?.d?`<div class="stamp">${fmtDate(rec.d)}</div>`:''}</td></tr>`;
+    </div>${rec?.d?`<div class="stamp">${fmtDate(rec.d)}</div>`:''}</td>
+    <td class="note-td" data-l="ملاحظات المعلم"><textarea class="tnote${state.notes[s.key]?' has':''}" rows="3" placeholder="أضف ملاحظة…" aria-label="ملاحظات المعلم">${esc(state.notes[s.key]||'')}</textarea></td></tr>`;
   return h;
 }
 function tableHTML(P){
@@ -410,7 +425,7 @@ function tableHTML(P){
   const acts=[...new Set(P.sessions.map(s=>s.activity))], multi=acts.length>1;
   const head = cols.map(c=> c==='activity' && Sb.id==='arabic' ? 'الأنشطة' : LBL(c));
   const rows=list.map((s,i)=>rowHTML(s,cols,spans,mergeable,i,acts.indexOf(s.activity),multi)).join('');
-  return `<div class="tbl-wrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}<th>الحالة</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  return `<div class="tbl-wrap"><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}<th>الحالة</th><th>ملاحظات المعلم</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function evalHTML(P){
   const e=P.evaluation; if(!e) return '';
@@ -481,7 +496,7 @@ const b64=blob=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.res
 async function exportBackup(){
   const files=await allFiles(); const packed=[];
   for(const f of files) packed.push({...f, blob:undefined, data:await b64(f.blob)});
-  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,files:packed};
+  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,notes:state.notes,edits:state.edits,files:packed};
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(out)],{type:'application/json'}));
   a.download=`TunisTracker-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('تم تنزيل النسخة الاحتياطية');
 }
@@ -489,11 +504,58 @@ $('#importFile').addEventListener('change', async e=>{
   const f=e.target.files[0]; if(!f) return;
   try{ const d=JSON.parse(await f.text()); if(d.app!=='TunisTracker') throw 0;
     if(!confirm('سيتم استبدال التقدم الحالي بمحتوى النسخة الاحتياطية. متابعة؟')) return;
-    state.status=d.status||{}; save();
+    state.status=d.status||{}; state.notes=d.notes||{}; state.edits=d.edits||{}; save();
     for(const x of (d.files||[])){ const blob=await (await fetch(x.data)).blob(); await putFile({id:x.id,evalKey:x.evalKey,name:x.name,type:x.type,size:x.size,added:x.added,blob}); }
     renderAll(); toast('تم استرجاع النسخة الاحتياطية');
   }catch(err){ toast('الملف غير صالح'); }
   e.target.value='';
+});
+
+/* ---------- teacher notes + editable cells ---------- */
+let noteT={};
+document.addEventListener('input', e=>{
+  const ta=e.target.closest('.tnote'); if(!ta) return;
+  const k=ta.closest('tr').dataset.key; ta.classList.toggle('has', !!ta.value.trim());
+  clearTimeout(noteT[k]); noteT[k]=setTimeout(()=>{ const v=ta.value; if(v.trim()) state.notes[k]=v; else delete state.notes[k]; save(); },400);
+});
+document.addEventListener('focusout', e=>{
+  const ta=e.target.closest && e.target.closest('.tnote');
+  if(ta){ const k=ta.closest('tr').dataset.key, v=ta.value; clearTimeout(noteT[k]); if(v.trim()) state.notes[k]=v; else delete state.notes[k]; save(); return; }
+  const ec=e.target.closest && e.target.closest('.ec[contenteditable="true"]'); if(!ec) return;
+  ec.removeAttribute('contenteditable');
+  const tr=ec.closest('tr'), k=tr.dataset.key, f=ec.dataset.field;
+  const s=S().periods.flatMap(p=>p.sessions).find(x=>x.key===k); if(!s) return;
+  const v=ec.innerText.replace(/\r/g,'').replace(/\n{3,}/g,'\n\n').trim();
+  state.edits[k] ||= {};
+  if(v===(s[f]||'').trim()) delete state.edits[k][f]; else state.edits[k][f]=v;
+  if(!Object.keys(state.edits[k]).length) delete state.edits[k];
+  save(); rerenderCell(tr,s,f);
+  if(state.edits[k]?.[f]!=null) toast('تم حفظ التعديل');
+});
+function rerenderCell(tr,s,f){
+  const td=tr.querySelector(`td[data-field="${f}"]`); if(!td) return;
+  const ed=state.edits[s.key]?.[f];
+  td.classList.toggle('edited', ed!=null);
+  td.innerHTML=`<div class="ec" data-field="${f}" title="انقر للتعديل">${cellHTML(ed!=null?ed:s[f])}</div>${ed!=null?`<div class="edtag"><span>✎ معدّل</span><button class="rst" data-reset="${f}" title="استرجاع نص الكتاب">↺ نص الكتاب</button></div>`:''}`;
+}
+document.addEventListener('click', e=>{
+  const rb=e.target.closest('.rst');
+  if(rb){ const tr=rb.closest('tr'), k=tr.dataset.key, f=rb.dataset.reset;
+    const s=S().periods.flatMap(p=>p.sessions).find(x=>x.key===k);
+    if(state.edits[k]){ delete state.edits[k][f]; if(!Object.keys(state.edits[k]).length) delete state.edits[k]; save(); }
+    rerenderCell(tr,s,f); toast('تم استرجاع نص الكتاب'); return; }
+  const ec=e.target.closest('.ec');
+  if(ec && ec.getAttribute('contenteditable')!=='true'){
+    const tr=ec.closest('tr'), k=tr.dataset.key, f=ec.dataset.field;
+    const s=S().periods.flatMap(p=>p.sessions).find(x=>x.key===k);
+    const ed=state.edits[k]?.[f]; ec.textContent = ed!=null?ed:(s[f]||'');
+    ec.setAttribute('contenteditable','true'); ec.focus();
+    const r=document.createRange(); r.selectNodeContents(ec); r.collapse(false); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+});
+document.addEventListener('keydown', e=>{
+  const ec=e.target.closest && e.target.closest('.ec[contenteditable="true"]'); if(!ec) return;
+  if(e.key==='Escape'){ const tr=ec.closest('tr'); const s=S().periods.flatMap(p=>p.sessions).find(x=>x.key===tr.dataset.key); ec.removeAttribute('contenteditable'); rerenderCell(tr,s,ec.dataset.field); }
 });
 let wasMobile=isMobile();
 addEventListener('resize',()=>{ if(isMobile()!==wasMobile){ wasMobile=isMobile(); renderContent(); } });
