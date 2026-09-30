@@ -159,6 +159,18 @@ td.editable .ec[contenteditable="true"]{background:var(--surface);box-shadow:ins
 .sp-lab span{overflow:hidden;text-overflow:ellipsis;font-weight:600;color:var(--ink-2);border-top:2px solid var(--pc);padding-top:1px}
 .sp-cp{flex:none;width:24px;height:24px;border-radius:50%;border:2.5px solid #2f6db0;background:var(--surface);color:#2f6db0;display:grid;place-items:center;font-size:11px;font-weight:700;padding:0;margin:-1px 1px 0;position:relative;z-index:1}
 .sp-cp:hover{transform:scale(1.15)}
+.evres{margin-top:10px;display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--line);padding-top:10px}
+.evm{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:600;text-align:start;width:100%}
+.evm .box{width:18px;height:18px;border-radius:50%;border:1.6px solid var(--ink-3);display:grid;place-items:center;flex:none}
+.evm .box svg{width:12px;height:12px;opacity:0}
+.evm:hover{border-color:var(--ink-3)}
+.evm.all[aria-pressed="true"]{background:var(--ok-bg-2);border-color:var(--ok);color:var(--ok)}
+.evm.exc[aria-pressed="true"]{background:var(--sup-bg);border-color:var(--sup);color:var(--sup)}
+.evm[aria-pressed="true"] .box{border-color:currentColor;background:currentColor}
+.evm[aria-pressed="true"] .box svg{opacity:1;color:#fff}
+.evnames{width:100%;min-height:64px;resize:vertical;border:1px solid var(--sup-line);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px;background:var(--surface);color:var(--ink)}
+.evnames:focus{outline:2px solid var(--sup)}
+.sp-cp.part{box-shadow:0 0 0 3px var(--sup)}
 .sp-cp.done{background:var(--ok);border-color:var(--ok);color:#fff}
 .sp-cp svg{width:14px;height:14px}
 @media (max-width:900px){ .sp-row{overflow-x:auto;padding-bottom:4px} .sp-seg{min-width:74px} .sp-leg{display:none} }
@@ -334,7 +346,7 @@ const LS_KEY='tunistracker.v1';
 function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let state = lsGet(LS_KEY,{status:{},ui:{}});
-state.status ||= {}; state.evals ||= {}; for(const k in state.status){ if(state.status[k]?.s==='sup') state.status[k].s='ok'; } state.notes ||= {}; state.edits ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
+state.status ||= {}; state.evals ||= {}; state.evalRes ||= {}; for(const k in state.status){ if(state.status[k]?.s==='sup') state.status[k].s='ok'; } state.notes ||= {}; state.edits ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
 const save=()=>lsSet(LS_KEY,state);
 
 let dbp=null;
@@ -411,11 +423,13 @@ function renderPeriodNav(){
   const Sb=S(), st=countSessions(subjSessions(Sb)), ev=evCount({subjects:[Sb]});
   const segs=Sb.periods.map((P,i)=>{ const ps=countSessions(P.sessions), pc=PCOLORS[i%PCOLORS.length];
     const e=P.evaluation, done=!!state.evals[P.evalKey];
-    const tip=e?`تقييم ${P.title}${done?' ✓ تم التقييم':''} — ${e.expected_performance.split('\n')[0].slice(0,110)}`:'';
+    const rr=state.evalRes[P.evalKey];
+    const resTxt=rr?.m==='all'?' · تم الاستيعاب لكل القسم':rr?.m==='except'?` · تم الاستيعاب لكل القسم إلا: ${(rr.names||'…').replace(/\n/g,'، ')}`:'';
+    const tip=e?`تقييم ${P.title}${done?' ✓ تم التقييم':''}${resTxt} — ${e.expected_performance.split('\n')[0].slice(0,110)}`:'';
     return `<div class="sp-seg" style="flex:${Math.max(P.sessions.length,3)} 1 0;--pc:${pc}">
         <button class="sp-track" data-jump="${secId(P)}" title="${esc(P.title)}: ${ps.ok}/${ps.total} حصة"><i style="width:${ps.total?ps.ok/ps.total*100:0}%"></i></button>
         <div class="sp-lab"><span>${esc(P.title)}</span><small>${ps.ok}/${ps.total}</small></div>
-      </div>${e?`<button class="sp-cp${done?' done':''}" data-evjump="${P.evalKey}" data-sec="${secId(P)}" title="${esc(tip)}" aria-label="${esc(tip)}">${done?ICON_CHECK:'<span>ت</span>'}</button>`:''}`;}).join('');
+      </div>${e?`<button class="sp-cp${done?' done':''}${rr?.m==='except'?' part':''}" data-evjump="${P.evalKey}" data-sec="${secId(P)}" title="${esc(tip)}" aria-label="${esc(tip)}">${done?ICON_CHECK:'<span>ت</span>'}</button>`:''}`;}).join('');
   $('#periodNav').innerHTML = `<div class="sp">
     <div class="sp-head"><b>مسار ${Sb.name}</b><span>${st.ok} من ${st.total} حصة (${st.pct}٪)</span>${ev.total?`<span class="sp-evn">التقييمات: ${ev.done}/${ev.total}</span>`:''}
       <span class="sp-leg"><i class="lg-l"></i>حصص منجزة <i class="lg-c"></i>تقييم <i class="lg-cd"></i>تم التقييم</span></div>
@@ -483,9 +497,19 @@ function evalHTML(P){
   const done=state.evals[P.evalKey];
   return `<div class="eval" id="ev-${P.evalKey}"><div class="sec-label">التقييم</div><div class="tbl-wrap"><table><thead><tr><th>${S().id==='arabic'?'الأنشطة':'النشاط'}</th><th>الأداء المنتظر</th><th>ورقة التقييم</th></tr></thead>
    <tbody><tr data-eval="${P.evalKey}" class="${done?'ev-done':''}"><td class="act a0">${esc(e.activity||S().act)}</td><td class="perf" data-l="الأداء المنتظر">${esc(e.expected_performance)}</td>
-   <td class="att"><button class="attach-btn" data-attach="${P.evalKey}">${ICON_CLIP}إرفاق التقييم</button><ul class="files" data-files="${P.evalKey}"></ul>
-   <button class="ev-btn" data-evaldone="${P.evalKey}" aria-pressed="${!!done}"><span class="box">${ICON_CHECK}</span>تم التقييم</button>${done?`<div class="stamp">${fmtDate(done.d)}</div>`:''}</td></tr></tbody></table></div></div>`;
+   <td class="att" data-attcell="${P.evalKey}">${attInner(P)}</td></tr></tbody></table></div></div>`;
 }
+function attInner(P){
+  const ek=P.evalKey, done=state.evals[ek], r=state.evalRes[ek];
+  return `<button class="attach-btn" data-attach="${ek}">${ICON_CLIP}إرفاق التقييم</button><ul class="files" data-files="${ek}"></ul>
+   <button class="ev-btn" data-evaldone="${ek}" aria-pressed="${!!done}"><span class="box">${ICON_CHECK}</span>تم التقييم</button>${done?`<div class="stamp">${fmtDate(done.d)}</div>`:''}
+   <div class="evres">
+     <button class="evm all" data-evm="all" data-ek="${ek}" aria-pressed="${r?.m==='all'}"><span class="box">${ICON_CHECK}</span>تم الاستيعاب لكل القسم</button>
+     <button class="evm exc" data-evm="except" data-ek="${ek}" aria-pressed="${r?.m==='except'}"><span class="box">${ICON_CHECK}</span>تم الاستيعاب لكل القسم إلا…</button>
+     ${r?.m==='except'?`<textarea class="evnames" data-ek="${ek}" rows="3" placeholder="اكتب أسماء التلاميذ الذين لم يستوعبوا (اسم في كل سطر أو مفصولة بفواصل)">${esc(r.names||'')}</textarea>`:''}
+   </div>`;
+}
+function refreshAtt(ek){ const td=document.querySelector(`[data-attcell="${ek}"]`); const P=S().periods.find(p=>p.evalKey===ek); if(!td||!P) return; td.innerHTML=attInner(P); td.closest('tr').classList.toggle('ev-done',!!state.evals[ek]); renderFiles(ek); refreshCounts(P); }
 async function renderFiles(ek){
   const ul=document.querySelector(`[data-files="${ek}"]`); if(!ul) return;
   const files=await filesFor(ek); files.sort((a,b)=>a.added.localeCompare(b.added));
@@ -541,9 +565,12 @@ document.addEventListener('click', async e=>{
   if(t.dataset.evjump){ const sec=document.getElementById(t.dataset.sec); if(sec&&sec.classList.contains('collapsed')){ state.ui.collapsed[t.dataset.sec]=false; save(); sec.classList.remove('collapsed'); }
     const ev=document.getElementById('ev-'+t.dataset.evjump); if(ev){ ev.scrollIntoView({behavior:'smooth',block:'center'}); ev.classList.remove('flash'); void ev.offsetWidth; ev.classList.add('flash'); } return; }
   if(t.dataset.evaldone){ const ek=t.dataset.evaldone; if(state.evals[ek]) delete state.evals[ek]; else state.evals[ek]={d:new Date().toISOString()}; save();
-    const tr=t.closest('tr'), done=state.evals[ek]; tr.classList.toggle('ev-done',!!done); t.setAttribute('aria-pressed',!!done);
-    t.parentElement.querySelector('.stamp')?.remove(); if(done) t.insertAdjacentHTML('afterend',`<div class="stamp">${fmtDate(done.d)}</div>`);
-    const P=S().periods.find(p=>p.evalKey===ek); refreshCounts(P); toast(done?'تم تسجيل التقييم ✓':'أُلغي تسجيل التقييم'); return; }
+    refreshAtt(ek); toast(state.evals[ek]?'تم تسجيل التقييم ✓':'أُلغي تسجيل التقييم'); return; }
+  if(t.dataset.evm){ const ek=t.dataset.ek, m=t.dataset.evm, cur=state.evalRes[ek];
+    if(cur?.m===m) delete state.evalRes[ek]; else { state.evalRes[ek]={m,names:cur?.names||'',d:new Date().toISOString()}; if(!state.evals[ek]) state.evals[ek]={d:new Date().toISOString()}; }
+    save(); refreshAtt(ek);
+    if(state.evalRes[ek]?.m==='except'){ const ta=document.querySelector(`.evnames[data-ek="${ek}"]`); ta&&ta.focus(); }
+    toast(!state.evalRes[ek]?'أُلغي الاختيار':m==='all'?'تم الاستيعاب لكل القسم ✓':'اكتب أسماء التلاميذ المعنيين'); return; }
   if(t.dataset.attach){ const inp=$('#attachInput'); inp.dataset.target=t.dataset.attach; inp.value=''; inp.click(); return; }
   if(t.dataset.del){ if(!confirm('حذف هذا المرفق؟')) return; const ek=t.closest('[data-files]').dataset.files; await delFile(t.dataset.del); if(ek.startsWith('ex:')) renderExFiles(); else renderFiles(ek); toast('تم حذف المرفق'); return; }
   if(t.dataset.open){ e.preventDefault(); const f=(await allFiles()).find(x=>x.id===t.dataset.open); if(f){ const url=URL.createObjectURL(f.blob); const w=window.open(url,'_blank'); if(!w){ const a=document.createElement('a'); a.href=url; a.download=f.name; a.click(); } setTimeout(()=>URL.revokeObjectURL(url),60000);} return; }
@@ -564,7 +591,7 @@ const b64=blob=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.res
 async function exportBackup(){
   const files=await allFiles(); const packed=[];
   for(const f of files) packed.push({...f, blob:undefined, data:await b64(f.blob)});
-  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,evals:state.evals,notes:state.notes,edits:state.edits,files:packed};
+  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,evals:state.evals,evalRes:state.evalRes,notes:state.notes,edits:state.edits,files:packed};
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(out)],{type:'application/json'}));
   a.download=`TunisTracker-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('تم تنزيل النسخة الاحتياطية');
 }
@@ -572,7 +599,7 @@ $('#importFile').addEventListener('change', async e=>{
   const f=e.target.files[0]; if(!f) return;
   try{ const d=JSON.parse(await f.text()); if(d.app!=='TunisTracker') throw 0;
     if(!confirm('سيتم استبدال التقدم الحالي بمحتوى النسخة الاحتياطية. متابعة؟')) return;
-    state.status=d.status||{}; state.evals=d.evals||{}; state.notes=d.notes||{}; state.edits=d.edits||{}; save();
+    state.status=d.status||{}; state.evals=d.evals||{}; state.evalRes=d.evalRes||{}; state.notes=d.notes||{}; state.edits=d.edits||{}; save();
     for(const x of (d.files||[])){ const blob=await (await fetch(x.data)).blob(); await putFile({id:x.id,evalKey:x.evalKey,name:x.name,type:x.type,size:x.size,added:x.added,blob}); }
     renderAll(); toast('تم استرجاع النسخة الاحتياطية');
   }catch(err){ toast('الملف غير صالح'); }
@@ -581,6 +608,7 @@ $('#importFile').addEventListener('change', async e=>{
 
 /* ---------- teacher notes + editable cells ---------- */
 let noteT={};
+document.addEventListener('input', e=>{ const ta=e.target.closest && e.target.closest('.evnames'); if(!ta) return; const ek=ta.dataset.ek; if(state.evalRes[ek]){ state.evalRes[ek].names=ta.value; clearTimeout(noteT['ev'+ek]); noteT['ev'+ek]=setTimeout(()=>{ save(); renderPeriodNav(); },400);} });
 document.addEventListener('input', e=>{
   const ta=e.target.closest('.tnote'); if(!ta) return;
   const k=ta.closest('tr').dataset.key; ta.classList.toggle('has', !!ta.value.trim());
