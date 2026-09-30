@@ -124,6 +124,43 @@ td.note-td{width:200px;vertical-align:top;background:var(--surface)!important;pa
 td.editable .ec{cursor:text;border-radius:6px;padding:2px 4px;margin:-2px -4px;min-height:1.6em;white-space:pre-line}
 td.editable .ec:hover{box-shadow:inset 0 0 0 1px var(--line)}
 td.editable .ec[contenteditable="true"]{background:var(--surface);box-shadow:inset 0 0 0 2px var(--ok);outline:none;cursor:text}
+.stat.ev .v{color:#2f6db0} .stat .v small{font-size:16px;color:var(--ink-3);font-weight:600}
+.p-count .c-ev{color:var(--ink-3);font-weight:600}
+.sbtn.exb{border-style:dashed}
+.sbtn.exb:hover{border-color:#2f6db0;color:#2f6db0}
+.sbtn .box.clip{border:0;background:none}
+.sbtn .box.clip svg{opacity:1;width:16px;height:16px}
+.exfiles{margin-top:6px}
+.exfiles li{padding:3px 6px;font-size:12px}
+.ev-btn{margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--ok);background:var(--surface);color:var(--ok);border-radius:10px;padding:9px 12px;font-weight:700;font-size:14px}
+.ev-btn .box{width:18px;height:18px;border-radius:5px;border:1.6px solid var(--ok);display:grid;place-items:center}
+.ev-btn .box svg{width:13px;height:13px;opacity:0}
+.ev-btn[aria-pressed="true"]{background:var(--ok);color:#fff}
+.ev-btn[aria-pressed="true"] .box{background:#fff;border-color:#fff;color:var(--ok)}
+.ev-btn[aria-pressed="true"] .box svg{opacity:1}
+.eval tr.ev-done td.perf{background:var(--ok-bg-2)}
+.eval.flash .tbl-wrap{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 4px #2f86c9}100%{box-shadow:0 0 0 0 transparent}}
+.periods#periodNav{display:block;overflow:visible}
+.sp{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px 8px}
+.sp-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-bottom:8px}
+.sp-head b{font-size:14px;color:var(--ink)}
+.sp-evn{font-weight:600;color:#2f6db0}
+.sp-leg{margin-inline-start:auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-3)}
+.sp-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-start:6px}
+.sp-leg .lg-l{background:var(--ok)} .sp-leg .lg-c{border-radius:50%;border:2px solid #2f6db0;background:var(--surface)} .sp-leg .lg-cd{border-radius:50%;background:var(--ok)}
+.sp-row{display:flex;align-items:flex-start;gap:0}
+.sp-seg{min-width:0;display:flex;flex-direction:column;gap:4px}
+.sp-track{display:block;height:12px;border:0;padding:0;margin:5px 2px 0;border-radius:99px;background:var(--todo);overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pc) 45%,transparent)}
+.sp-track i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .35s}
+.sp-track:hover{filter:brightness(.95)}
+.sp-lab{display:flex;justify-content:space-between;gap:6px;padding:0 4px;font-size:11.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden}
+.sp-lab span{overflow:hidden;text-overflow:ellipsis;font-weight:600;color:var(--ink-2);border-top:2px solid var(--pc);padding-top:1px}
+.sp-cp{flex:none;width:24px;height:24px;border-radius:50%;border:2.5px solid #2f6db0;background:var(--surface);color:#2f6db0;display:grid;place-items:center;font-size:11px;font-weight:700;padding:0;margin:-1px 1px 0;position:relative;z-index:1}
+.sp-cp:hover{transform:scale(1.15)}
+.sp-cp.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.sp-cp svg{width:14px;height:14px}
+@media (max-width:900px){ .sp-row{overflow-x:auto;padding-bottom:4px} .sp-seg{min-width:74px} .sp-leg{display:none} }
 .edtag{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:#9a6b00}
 .edtag .rst{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:6px;padding:1px 7px;font-size:11.5px}
 .edtag .rst:hover{color:var(--ink);border-color:var(--ink-3)}
@@ -295,7 +332,7 @@ const LS_KEY='tunistracker.v1';
 function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let state = lsGet(LS_KEY,{status:{},ui:{}});
-state.status ||= {}; state.notes ||= {}; state.edits ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
+state.status ||= {}; state.evals ||= {}; for(const k in state.status){ if(state.status[k]?.s==='sup') state.status[k].s='ok'; } state.notes ||= {}; state.edits ||= {}; state.ui ||= {}; state.ui.collapsed ||= {}; state.ui.tabs ||= {};
 const save=()=>lsSet(LS_KEY,state);
 
 let dbp=null;
@@ -339,7 +376,7 @@ function countSessions(list){ let total=0,ok=0,sup=0; for(const s of list){ tota
 const periodSessions=P=>P.sessions;
 const subjSessions=Sb=>Sb.periods.flatMap(p=>p.sessions);
 const yearSessions=Yr=>Yr.subjects.flatMap(subjSessions);
-const barHTML=st=>`<div class="bar" role="img" aria-label="${st.ok} تم الاستيعاب، ${st.sup} يحتاج إلى دعم، ${st.left} متبقية"><i class="b-ok" style="width:${st.total?st.ok/st.total*100:0}%"></i><i class="b-sup" style="width:${st.total?st.sup/st.total*100:0}%"></i></div>`;
+const barHTML=st=>`<div class="bar" role="img" aria-label="${st.ok} تم الدرس، ${st.left} متبقية"><i class="b-ok" style="width:${st.total?st.ok/st.total*100:0}%"></i><i class="b-sup" style="width:${st.total?st.sup/st.total*100:0}%"></i></div>`;
 
 function renderYears(){
   $('#years').innerHTML = YEARS.map(Yr=>{ const st=countSessions(yearSessions(Yr));
@@ -347,14 +384,15 @@ function renderYears(){
       <div><div class="yt">${Yr.name}</div><div class="ys">${Yr.subjects.map(s=>s.name).join(' · ')} — ${st.total} حصة</div></div></button>`}).join('');
   $('#subtitle').textContent = `${Y().name}: ${Y().subjects.map(s=>s.name).join(' و')} — التعلّم المنهجي والتقييم`;
 }
+function evCount(Yr){ let total=0,done=0; for(const s of Yr.subjects) for(const P of s.periods) if(P.evaluation){ total++; if(state.evals[P.evalKey]) done++; } return {total,done}; }
 function renderSummary(){
   const Yr=Y(), A=countSessions(yearSessions(Yr)), per=Yr.subjects.map(s=>[s,countSessions(subjSessions(s))]);
   const brk=k=>per.map(([s,st])=>`${s.act} ${st[k]}`).join(' · ');
   $('#summary').innerHTML = `
-   <div class="card stat big"><div class="k">التقدم في ${Yr.name} (${A.ok+A.sup} من ${A.total} حصة)</div><div class="v">${A.pct}٪</div>${barHTML(A)}
-     <div class="legend"><span class="l-ok">تم الاستيعاب</span><span class="l-sup">يحتاج إلى دعم</span><span>لم تُنجز بعد</span></div></div>
-   <div class="card stat ok"><div class="k">تم الاستيعاب</div><div class="v">${A.ok}</div><div class="k">${brk('ok')}</div></div>
-   <div class="card stat sup"><div class="k">يحتاج إلى دعم</div><div class="v">${A.sup}</div><div class="k">${brk('sup')}</div></div>
+   <div class="card stat big"><div class="k">التقدم في ${Yr.name} (${A.ok} من ${A.total} حصة)</div><div class="v">${A.pct}٪</div>${barHTML(A)}
+     <div class="legend"><span class="l-ok">تم الدرس</span><span>لم تُنجز بعد</span></div></div>
+   <div class="card stat ok"><div class="k">تم الدرس</div><div class="v">${A.ok}</div><div class="k">${brk('ok')}</div></div>
+   <div class="card stat ev"><div class="k">التقييمات المنجزة</div><div class="v">${evCount(Yr).done}<small> / ${evCount(Yr).total}</small></div><div class="k">${Yr.subjects.filter(s=>evCount({subjects:[s]}).total).map(s=>`${s.act} ${evCount({subjects:[s]}).done}/${evCount({subjects:[s]}).total}`).join(' · ')}</div></div>
    <div class="card stat"><div class="k">حصص متبقية</div><div class="v">${A.left}</div><div class="k">${brk('left')}</div></div>`;
 }
 function renderTabs(){
@@ -362,20 +400,31 @@ function renderTabs(){
 }
 function renderFilters(){
   const st=countSessions(subjSessions(S()));
-  const F=[['all','الكل',st.total],['left','لم تُنجز',st.left],['sup','يحتاج إلى دعم',st.sup],['ok','تم الاستيعاب',st.ok]];
+  if(filter==='sup') filter='all';
+  const F=[['all','الكل',st.total],['left','لم تُنجز',st.left],['ok','تم الدرس',st.ok]];
   $('#filters').innerHTML = F.map(([k,l,n])=>`<button class="chip" data-filter="${k}" aria-pressed="${k===filter}">${l}<span class="n">${n}</span></button>`).join('');
 }
 const secId=P=>`${year}-${subj}-${P.n}`;
 function renderPeriodNav(){
-  $('#periodNav').innerHTML = S().periods.map((P,i)=>{ const st=countSessions(P.sessions);
-    return `<button class="pjump ${st.left===0?'done':''}" style="--pc:${PCOLORS[i%PCOLORS.length]}" data-jump="${secId(P)}"><b>${P.title}</b><small>${st.ok+st.sup}/${st.total}</small>${barHTML(st)}</button>`}).join('');
+  const Sb=S(), st=countSessions(subjSessions(Sb)), ev=evCount({subjects:[Sb]});
+  const segs=Sb.periods.map((P,i)=>{ const ps=countSessions(P.sessions), pc=PCOLORS[i%PCOLORS.length];
+    const e=P.evaluation, done=!!state.evals[P.evalKey];
+    const tip=e?`تقييم ${P.title}${done?' ✓ تم التقييم':''} — ${e.expected_performance.split('\n')[0].slice(0,110)}`:'';
+    return `<div class="sp-seg" style="flex:${Math.max(P.sessions.length,3)} 1 0;--pc:${pc}">
+        <button class="sp-track" data-jump="${secId(P)}" title="${esc(P.title)}: ${ps.ok}/${ps.total} حصة"><i style="width:${ps.total?ps.ok/ps.total*100:0}%"></i></button>
+        <div class="sp-lab"><span>${esc(P.title)}</span><small>${ps.ok}/${ps.total}</small></div>
+      </div>${e?`<button class="sp-cp${done?' done':''}" data-evjump="${P.evalKey}" data-sec="${secId(P)}" title="${esc(tip)}" aria-label="${esc(tip)}">${done?ICON_CHECK:'<span>ت</span>'}</button>`:''}`;}).join('');
+  $('#periodNav').innerHTML = `<div class="sp">
+    <div class="sp-head"><b>مسار ${Sb.name}</b><span>${st.ok} من ${st.total} حصة (${st.pct}٪)</span>${ev.total?`<span class="sp-evn">التقييمات: ${ev.done}/${ev.total}</span>`:''}
+      <span class="sp-leg"><i class="lg-l"></i>حصص منجزة <i class="lg-c"></i>تقييم <i class="lg-cd"></i>تم التقييم</span></div>
+    <div class="sp-row">${segs}</div></div>`;
 }
 function passes(st){ if(filter==='all')return true; if(filter==='left')return !st; return st===filter; }
 function periodHeadInner(P){
   const st=countSessions(P.sessions);
   return `<h2>${P.title}<small>${S().name} · ${Y().name}</small></h2>
     ${st.left===0?'<span class="badge-done">مكتملة</span>':''}
-    <div class="p-prog">${barHTML(st)}<div class="p-count"><span>${st.ok+st.sup} من ${st.total} حصة (${st.pct}٪)</span><span class="c-ok">✓ ${st.ok} تم الاستيعاب</span><span class="c-sup">! ${st.sup} يحتاج إلى دعم</span></div></div>${ICON_CHEV}`;
+    <div class="p-prog">${barHTML(st)}<div class="p-count"><span>${st.ok} من ${st.total} حصة (${st.pct}٪)</span><span class="c-ok">✓ ${st.ok} تم الدرس</span>${P.evaluation?(state.evals[P.evalKey]?'<span class="c-ok">✓ تم التقييم</span>':'<span class="c-ev">○ التقييم لم يُنجز</span>'):''}</div></div>${ICON_CHEV}`;
 }
 
 /* rowspans: activity > competency > distinctive_goals (only when goals column sits before the day, as in the book) */
@@ -410,9 +459,9 @@ function rowHTML(s,cols,spans,mergeable,i,actIdx,multiAct){
     h+=`<td class="${CLS[c]}" data-l="${LBL(c)}">${cellHTML(s[c])}</td>`;
   }
   h+=`<td class="st"><div class="stbtns">
-      <button class="sbtn ok" data-set="ok" aria-pressed="${st==='ok'}"><span class="box">${ICON_CHECK}</span>تم الاستيعاب</button>
-      <button class="sbtn sup" data-set="sup" aria-pressed="${st==='sup'}"><span class="box">${ICON_FLAG}</span>يحتاج إلى دعم</button>
-    </div>${rec?.d?`<div class="stamp">${fmtDate(rec.d)}</div>`:''}</td>
+      <button class="sbtn ok" data-set="ok" aria-pressed="${st==='ok'}"><span class="box">${ICON_CHECK}</span>تم الدرس</button>
+      <button class="sbtn exb" data-attach="ex:${esc(s.key)}"><span class="box clip">${ICON_CLIP}</span>إرفاق تمرين</button>
+    </div>${rec?.d?`<div class="stamp">${fmtDate(rec.d)}</div>`:''}<ul class="files exfiles" data-files="ex:${esc(s.key)}"></ul></td>
     <td class="note-td" data-l="ملاحظات المعلم"><textarea class="tnote${state.notes[s.key]?' has':''}" rows="3" placeholder="أضف ملاحظة…" aria-label="ملاحظات المعلم">${esc(state.notes[s.key]||'')}</textarea></td></tr>`;
   return h;
 }
@@ -429,15 +478,17 @@ function tableHTML(P){
 }
 function evalHTML(P){
   const e=P.evaluation; if(!e) return '';
-  return `<div class="eval"><div class="sec-label">التقييم</div><div class="tbl-wrap"><table><thead><tr><th>${S().id==='arabic'?'الأنشطة':'النشاط'}</th><th>الأداء المنتظر</th><th>ورقة التقييم</th></tr></thead>
-   <tbody><tr data-eval="${P.evalKey}"><td class="act a0">${esc(e.activity||S().act)}</td><td class="perf" data-l="الأداء المنتظر">${esc(e.expected_performance)}</td>
-   <td class="att"><button class="attach-btn" data-attach="${P.evalKey}">${ICON_CLIP}إرفاق التقييم</button><ul class="files" data-files="${P.evalKey}"></ul></td></tr></tbody></table></div></div>`;
+  const done=state.evals[P.evalKey];
+  return `<div class="eval" id="ev-${P.evalKey}"><div class="sec-label">التقييم</div><div class="tbl-wrap"><table><thead><tr><th>${S().id==='arabic'?'الأنشطة':'النشاط'}</th><th>الأداء المنتظر</th><th>ورقة التقييم</th></tr></thead>
+   <tbody><tr data-eval="${P.evalKey}" class="${done?'ev-done':''}"><td class="act a0">${esc(e.activity||S().act)}</td><td class="perf" data-l="الأداء المنتظر">${esc(e.expected_performance)}</td>
+   <td class="att"><button class="attach-btn" data-attach="${P.evalKey}">${ICON_CLIP}إرفاق التقييم</button><ul class="files" data-files="${P.evalKey}"></ul>
+   <button class="ev-btn" data-evaldone="${P.evalKey}" aria-pressed="${!!done}"><span class="box">${ICON_CHECK}</span>تم التقييم</button>${done?`<div class="stamp">${fmtDate(done.d)}</div>`:''}</td></tr></tbody></table></div></div>`;
 }
 async function renderFiles(ek){
   const ul=document.querySelector(`[data-files="${ek}"]`); if(!ul) return;
   const files=await filesFor(ek); files.sort((a,b)=>a.added.localeCompare(b.added));
   ul.innerHTML = files.map(f=>`<li><a href="#" data-open="${f.id}" title="${esc(f.name)}">${esc(f.name)}</a><span class="sz">${fmtSize(f.size)}</span><button class="x" data-del="${f.id}" aria-label="حذف">${ICON_X}</button></li>`).join('');
-  ul.closest('tr').classList.toggle('has-file', files.length>0);
+  if(!ek.startsWith('ex:')) ul.closest('tr').classList.toggle('has-file', files.length>0);
 }
 function renderContent(){
   const Sb=S();
@@ -449,6 +500,13 @@ function renderContent(){
       <div class="p-body">${P.intro?`<div class="p-intro">${cellHTML(P.intro).replace(/^(كفاية المجال:|كفايات المادة:)/gm,'<b>$1</b>')}</div>`:''}<div class="sec-label">التعلّم المنهجي</div>${tableHTML(P)}${evalHTML(P)}</div></section>`;
   }).join('');
   Sb.periods.forEach(P=>renderFiles(P.evalKey));
+  renderExFiles();
+}
+async function renderExFiles(){
+  const all=await allFiles(); const by={};
+  for(const f of all) if(f.evalKey && f.evalKey.startsWith('ex:')) (by[f.evalKey] ||= []).push(f);
+  document.querySelectorAll('ul.exfiles').forEach(ul=>{ const fs=(by[ul.dataset.files]||[]).sort((a,b)=>a.added.localeCompare(b.added));
+    ul.innerHTML = fs.map(f=>`<li><a href="#" data-open="${f.id}" title="${esc(f.name)}">${esc(f.name)}</a><button class="x" data-del="${f.id}" aria-label="حذف">${ICON_X}</button></li>`).join(''); });
 }
 function renderAll(){ renderYears(); renderSummary(); renderTabs(); renderFilters(); renderPeriodNav(); renderContent(); }
 function refreshCounts(P){
@@ -472,14 +530,20 @@ document.addEventListener('click', async e=>{
     const P=S().periods.find(p=>p.sessions.some(x=>x.key===k));
     if(filter!=='all'){ renderContent(); refreshCounts(P); return; }
     const st=state.status[k]?.s;
-    tr.classList.toggle('is-ok',st==='ok'); tr.classList.toggle('is-sup',st==='sup');
+    tr.classList.toggle('is-ok',st==='ok');
     tr.querySelectorAll('.sbtn').forEach(b=>b.setAttribute('aria-pressed',b.dataset.set===st));
     const tdSt=tr.querySelector('td.st'); tdSt.querySelector('.stamp')?.remove();
     if(state.status[k]) tdSt.insertAdjacentHTML('beforeend',`<div class="stamp">${fmtDate(state.status[k].d)}</div>`);
     refreshCounts(P); return;
   }
+  if(t.dataset.evjump){ const sec=document.getElementById(t.dataset.sec); if(sec&&sec.classList.contains('collapsed')){ state.ui.collapsed[t.dataset.sec]=false; save(); sec.classList.remove('collapsed'); }
+    const ev=document.getElementById('ev-'+t.dataset.evjump); if(ev){ ev.scrollIntoView({behavior:'smooth',block:'center'}); ev.classList.remove('flash'); void ev.offsetWidth; ev.classList.add('flash'); } return; }
+  if(t.dataset.evaldone){ const ek=t.dataset.evaldone; if(state.evals[ek]) delete state.evals[ek]; else state.evals[ek]={d:new Date().toISOString()}; save();
+    const tr=t.closest('tr'), done=state.evals[ek]; tr.classList.toggle('ev-done',!!done); t.setAttribute('aria-pressed',!!done);
+    t.parentElement.querySelector('.stamp')?.remove(); if(done) t.insertAdjacentHTML('afterend',`<div class="stamp">${fmtDate(done.d)}</div>`);
+    const P=S().periods.find(p=>p.evalKey===ek); refreshCounts(P); toast(done?'تم تسجيل التقييم ✓':'أُلغي تسجيل التقييم'); return; }
   if(t.dataset.attach){ const inp=$('#attachInput'); inp.dataset.target=t.dataset.attach; inp.value=''; inp.click(); return; }
-  if(t.dataset.del){ if(!confirm('حذف هذا المرفق؟')) return; const ek=t.closest('[data-files]').dataset.files; await delFile(t.dataset.del); renderFiles(ek); toast('تم حذف المرفق'); return; }
+  if(t.dataset.del){ if(!confirm('حذف هذا المرفق؟')) return; const ek=t.closest('[data-files]').dataset.files; await delFile(t.dataset.del); if(ek.startsWith('ex:')) renderExFiles(); else renderFiles(ek); toast('تم حذف المرفق'); return; }
   if(t.dataset.open){ e.preventDefault(); const f=(await allFiles()).find(x=>x.id===t.dataset.open); if(f){ const url=URL.createObjectURL(f.blob); const w=window.open(url,'_blank'); if(!w){ const a=document.createElement('a'); a.href=url; a.download=f.name; a.click(); } setTimeout(()=>URL.revokeObjectURL(url),60000);} return; }
   if(t.id==='printBtn'){ window.print(); return; }
   if(t.id==='exportBtn'){ exportBackup(); return; }
@@ -489,14 +553,15 @@ $('#attachInput').addEventListener('change', async e=>{
   const ek=e.target.dataset.target, files=[...e.target.files]; if(!files.length) return;
   try{
     for(const f of files){ await putFile({id:ek+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,7), evalKey:ek, name:f.name, type:f.type, size:f.size, added:new Date().toISOString(), blob:f}); }
-    renderFiles(ek); toast(files.length>1?`تم إرفاق ${files.length} ملفات`:'تم إرفاق التقييم');
+    if(ek.startsWith('ex:')) renderExFiles(); else renderFiles(ek);
+    toast(ek.startsWith('ex:')?(files.length>1?`تم إرفاق ${files.length} تمارين`:'تم إرفاق التمرين'):(files.length>1?`تم إرفاق ${files.length} ملفات`:'تم إرفاق التقييم'));
   }catch(err){ toast('تعذّر حفظ المرفق على هذا المتصفح'); }
 });
 const b64=blob=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob)});
 async function exportBackup(){
   const files=await allFiles(); const packed=[];
   for(const f of files) packed.push({...f, blob:undefined, data:await b64(f.blob)});
-  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,notes:state.notes,edits:state.edits,files:packed};
+  const out={app:'TunisTracker',version:2,exported:new Date().toISOString(),status:state.status,evals:state.evals,notes:state.notes,edits:state.edits,files:packed};
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(out)],{type:'application/json'}));
   a.download=`TunisTracker-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('تم تنزيل النسخة الاحتياطية');
 }
@@ -504,7 +569,7 @@ $('#importFile').addEventListener('change', async e=>{
   const f=e.target.files[0]; if(!f) return;
   try{ const d=JSON.parse(await f.text()); if(d.app!=='TunisTracker') throw 0;
     if(!confirm('سيتم استبدال التقدم الحالي بمحتوى النسخة الاحتياطية. متابعة؟')) return;
-    state.status=d.status||{}; state.notes=d.notes||{}; state.edits=d.edits||{}; save();
+    state.status=d.status||{}; state.evals=d.evals||{}; state.notes=d.notes||{}; state.edits=d.edits||{}; save();
     for(const x of (d.files||[])){ const blob=await (await fetch(x.data)).blob(); await putFile({id:x.id,evalKey:x.evalKey,name:x.name,type:x.type,size:x.size,added:x.added,blob}); }
     renderAll(); toast('تم استرجاع النسخة الاحتياطية');
   }catch(err){ toast('الملف غير صالح'); }
