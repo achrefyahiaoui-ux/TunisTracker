@@ -7883,7 +7883,6 @@
      "act": "تربية موسيقية",
      "periodLabel": "الثلاثي",
      "columns": [
-      "month",
       "day",
       "songs",
       "competency",
@@ -8325,7 +8324,6 @@
       "life_skills": "مهارات الحياة"
      },
      "merge": [
-      "month",
       "songs",
       "competency",
       "distinctive_goals",
