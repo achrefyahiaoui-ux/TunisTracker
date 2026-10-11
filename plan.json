@@ -23905,6 +23905,666 @@
      }
     },
     {
+     "id": "french",
+     "name": "Français",
+     "act": "Français",
+     "periodLabel": "Module",
+     "columns": [
+      "day",
+      "distinctive_goals",
+      "contents",
+      "session_goals"
+     ],
+     "periods": [
+      {
+       "n": 1,
+       "title": "Unité 1 · Module 1 – Thème : Travail – S.T : Travailler pour s'épanouir",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : au travail.\nExpression orale : Informer / s'informer\nPrésentation du module",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°1 : Apprentie comédien.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Présentation\nGrammaire\nReconnaître et utiliser\n• les déterminants (articles)\n• le nom commun et le nom propre\n• les pronoms personnels.",
+         "key": "y6-french-1-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : au travail.\nExpression orale : Décrire / Raconter un événement",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°1 : Apprentie comédien.\nGrammaire textuelle :\n• Identifier les éléments de reprise,\n• Identifier les différentes parties du récit.",
+         "session_goals": "Conjugaison\n• Identifier les trois temps de l'indicatif (présent, passé composé et futur)\n• Reconnaître et utiliser le verbe à l'infinitif et le verbe conjugué.",
+         "key": "y6-french-1-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : le boulanger.\nExpression orale : Décrire / Raconter un événement",
+         "day": "3",
+         "contents": "Lecture compréhension\nT. n°2 : Une parfumeuse en herbe.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et",
+         "session_goals": "Projet d'écriture : Entraînement 1 et construction de l'outil d'aide\n• S'approprier la structure du récit,\n• Compléter un récit en respectant la règle de non répétition,\n• Produire la fin d'un récit.",
+         "key": "y6-french-1-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Justifier un choix.",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n°2 : Une parfumeuse en herbe.\nGrammaire textuelle :\n• Attribuer des actions aux personnages.\n• Reconstituer l'ordre chronologique des événements.",
+         "session_goals": "Orthographe\n• Ecrire les verbes à l'infinitif après à, de, par, pour, sans.\nProjet d'écriture : Entraînement 2\n• Réécrire et produire un texte en respectant la règle de non contradiction.",
+         "key": "y6-french-1-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Justifier un choix.",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n°3 : Témoignages.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour compléter et produire des textes courts.",
+         "key": "y6-french-1-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : le boulanger.\nExpression orale : Décrire / Raconter un événement\nJustifier un choix.",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n°3 : Témoignages.\nGrammaire textuelle :\n• Attribuer des actions aux personnages.\n• Reconstituer des témoignages.\n• Faire parler un nouveau personnage.",
+         "session_goals": "Orthographe\n• Orthographier correctement des verbes précédés des prépositions à, de, par, pour, sans.",
+         "key": "y6-french-1-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\nDoc. 'Quel métier choisir plus tard ?'\n• S'informer et débattre sur des métiers et des professions.\n• Découvrir sa vocation.\nLecture suivie\nConte : « Malik et Flèche » 1er épisode.\n• Lire et commenter le 1er épisode.\n• Emettre des hypothèses sur la suite de l'histoire.",
+         "session_goals": "Projet d'écriture : Production\n• Produire un texte narratif en respectant la structure du récit et les règles de cohérences étudiés.\nDictée",
+         "key": "y6-french-1-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : le boulanger.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nBibliothèque de classe\nLecture-action\nUn « tableau découpé »\nDécouvrir un nouveau métier : le découpeur animalier.",
+         "session_goals": "",
+         "key": "y6-french-1-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-1"
+      },
+      {
+       "n": 2,
+       "title": "Unité 1 · Module 2 – Thème : Médias et nouvelles technologies",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : les machines.\nExpression orale : Accueillir / remercier / s'excuser.\nPrésentation du module",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°4 : Le vieux robot.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Mise au point\nGrammaire\n• Identifier et utiliser les déterminants possessifs et démonstratifs.",
+         "key": "y6-french-2-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : les machines.\nExpression orale : Accueillir / remercier / s'excuser.",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°4 : Le vieux robot.\nGrammaire textuelle :\n• Identifier les substituts permettant d'éviter les répétitions.\n• Travailler sur les répliques et sur la structure du récit.",
+         "session_goals": "Conjugaison\n• Distinguer les trois temps de l'indicatif.\n• Conjuguer les verbes étudiés en 5ème année à l'impératif.",
+         "key": "y6-french-2-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : Conversation.\nExpression orale : Accueillir / remercier / s'excuser.",
+         "day": "3",
+         "contents": "Lecture compréhension\nT. n° 5: Une télé pas comme les autres.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\nLire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Remédiation\n• Réaliser des activités de remédiation et de consolidation.",
+         "key": "y6-french-2-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Identifier une profession, des objets.",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n° 5: Une télé pas comme les autres.\nGrammaire textuelle :\n• Mettre en correspondance texte et image.\nOrganiser les différents événements dans un récit.",
+         "session_goals": "Orthographe\n• Distinguer et utiliser les homophones a / à.\nProjet d'écriture : Réécriture\n• Réécriture du texte à la lumière des corrections.",
+         "key": "y6-french-2-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Identifier une profession, des objets.",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n° 6 : Le monde du journalisme.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\nLire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour réécrire la notice de fabrication du « porte-revues »",
+         "key": "y6-french-2-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : Conversation.\nExpression orale : Exprimer un point de vue.\nPorter un jugement.",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n° 5 : Le monde du journalisme.\nGrammaire textuelle :\n• Acquérir un vocabulaire spécifique.\n• Attribuer des actions à des personnages\n• Décrire une profession par imitation.",
+         "session_goals": "Orthographe\n• Ecrire et utiliser correctement à et a pour compléter et remettre en ordre des phrases.\n• Répondre à des questions.",
+         "key": "y6-french-2-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\n• Concevoir la « une » d'un journal pour enfant.\nLecture suivie\nConte : « Malik et Flèche » 2er épisode.\n• Lire et commenter le 2er épisode.\n• Résumer le conte.",
+         "session_goals": "Projet d'écriture : Finalisation\n• Terminer la réécriture et la mise au point du projet.\nDictée",
+         "key": "y6-french-2-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : Conversation.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\n• Apprendre un vocabulaire nouveau et jouer avec les mots appartenant au thème « Médias et nouvelles technologies »\nBibliothèque de classe\nLecture-action\n• La maquette de la « une » d'un journal de classe.\n• Fabriquer la « une » d'un journal de classe.",
+         "session_goals": "",
+         "key": "y6-french-2-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-2"
+      },
+      {
+       "n": 3,
+       "title": "Unité 2 · Module 3 – Thème : Paix et tolérance – S.T : Accepter les autres",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Marie et moi.\nExpression orale : Décrire raconter des scènes.\nPrésentation du module",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°7 : Le petit lapin blanc.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Présentation\nGrammaire\nReconnaître et utiliser\n• Les adjectifs qualificatifs « épithètes » et « attributs »",
+         "key": "y6-french-3-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Marie et moi.\nExpression orale : Décrire raconter des scènes.",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°7 : Le petit lapin blanc.\nGrammaire textuelle :\n• Mettre en correspondance texte et image,\n• Travailler sur les répliques.\n• Reconstituer un paragraphe.",
+         "session_goals": "Conjugaison\n• Conjuguer les verbes « être » et « avoir » au passé composé et futur.",
+         "key": "y6-french-3-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Donne autour de toi.\nExpression orale : Porter un jugement.",
+         "day": "3",
+         "contents": "Lecture compréhension\nT. n°8 : le nouveau costume.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Entraînement 1 et construction de l'outil d'aide\n• S'entraîner à la production de répliques dans le cadre d'un récit.",
+         "key": "y6-french-3-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Porter un jugement.",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n°8 : le nouveau costume.\nGrammaire textuelle :\n• Identifier un passage descriptif.\n• Attribuer des répliques à des personnages.\n• Produire des répliques.",
+         "session_goals": "Orthographe\n• Distinguer les homophones son / sont.\nProjet d'écriture : Entraînement 2",
+         "key": "y6-french-3-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Prendre une position.",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n°9 : l'indien qui ne savait pas courir.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour compléter une description, répondre à des questions et terminer un récit.",
+         "key": "y6-french-3-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Donne autour de toi.\nExpression orale : Prendre une position",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n°9 : l'indien qui ne savait pas courir.\nGrammaire textuelle :\n• Mettre en correspondance texte et image,\n• Travailler sur les répliques et la description.\n• Faire parler un nouveau personnage.",
+         "session_goals": "Orthographe\n• Ecrire et utiliser correctement les homophones son / sont pour compléter et produire des phrases.",
+         "key": "y6-french-3-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\nDoc. 'Tous différents et tous semblables'\n• S'informer et débattre sur le thème 'le respect'\n• Découvrir sa vocation.\nLecture suivie\nConte : « La paire de chaussures » 1er épisode.\n• Lire et commenter le 1er épisode.\n• Emettre des hypothèses sur la suite de l'histoire.",
+         "session_goals": "Projet d'écriture : Production\n• Produire un récit contenant un passage dialogué.\nDictée",
+         "key": "y6-french-3-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Donne autour de toi.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nAcquérir un vocabulaire un vocabulaire nouveau et jouer avec des mots appartenant au thème « Paix et tolérance »\nBibliothèque de classe\nLecture-action\n« Le bouquet de bienvenue »\nFabriquer un bouquet de fleurs décoratif en bois.\nJournée plus",
+         "session_goals": "",
+         "key": "y6-french-3-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-3"
+      },
+      {
+       "n": 4,
+       "title": "Unité 2 · Module 4 – Thème : Solidarité et citoyenneté – S.T : S'entraider pour mieux réussir",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : L'homme et le chien.\nExpression orale : Justifier un point de vue.\nPrésentation du module",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°10 : Un bon compagnon.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Mise au point\nGrammaire\n• Utiliser la forme négative : ne …plus/ ne jamais.",
+         "key": "y6-french-4-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : L'homme et le chien.\nExpression orale : Justifier un point de vue.",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°10 : Un bon compagnon.\nGrammaire textuelle :\n• Relever et compléter des répliques.\n• Restituer l'ordre chronologique des événements.\n• Décrire des sentiments.",
+         "session_goals": "Conjugaison\n• Identifier et utiliser les verbes du type « finir » au passé composé et au futur.",
+         "key": "y6-french-4-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Si vous m'avez rien à dire.\nExpression orale : Exprimer un point de vue.",
+         "day": "3",
+         "contents": "Lecture compréhension\nT. n° 11 : L'écureuil et l'escargot.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Remédiation\n• Réaliser des activités de remédiation et de consolidation.",
+         "key": "y6-french-4-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Exprimer un point de vue.",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n° 11 : L'écureuil et l'escargot.\nGrammaire textuelle :\n• Travailler sur les répliques et les verbes introducteurs de parole.\n• Synthétiser.\n• Trouver un titre.",
+         "session_goals": "Orthographe\n• Distinguer les homophones et / est.\nProjet d'écriture : Réécriture\n• Réécriture du texte à la lumière des corrections.",
+         "key": "y6-french-4-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale : Informer / s'informer.",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n° 12 : Le courage d'un jeune apprenti.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour compléter un récit.",
+         "key": "y6-french-4-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Si vous m'avez rien à dire.\nExpression orale : Informer / s'informer.",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n° 12 : Le courage d'un jeune apprenti.\nGrammaire textuelle :\n• Mettre en correspondance texte et image,\n• Compléter les répliques par des verbes introducteurs.\n• Reconstituer le récit et compléter les répliques.",
+         "session_goals": "Orthographe\n• Ecrire correctement les homophones et/est pour compléter et produire des phrases.",
+         "key": "y6-french-4-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\nL'école : un droit pour tous.\n• S'informer et débattre sur le droit de l'éducation.\nLecture suivie\nConte : « La paire de chaussure » 2er épisode.\n• Lire et commenter le 2er épisode.\n• Résumer le conte.",
+         "session_goals": "Projet d'écriture : Finalisation\n• Terminer la réécriture et la mise au point du projet.\nDictée",
+         "key": "y6-french-4-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Si vous m'avez rien à dire.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nAcquérir un vocabulaire un vocabulaire nouveau et jouer avec des mots appartenant aux thèmes de l'amitié et de la fraternité.\nBibliothèque de classe\nLecture-action\n« Le jeu du petit Poucet »\n• Appliquer les règles d'un nouveau jeu.\nJournée plus",
+         "session_goals": "",
+         "key": "y6-french-4-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-4"
+      },
+      {
+       "n": 5,
+       "title": "Unité 3 · Module 5 – Thème : Environnement – S.T : Sauver la nature",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Qu’elle est belle la terre et/ou L’arbre volant.\nExpression orale 1 : Exploration\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer\nPrésentation du module",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°13 : Sauvez Keiko.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire des passages justificatifs à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d’écriture : Présentation du thème et du sous-thème, exploration/établissement de la carte d’exploration/exploitation du thème et du sous-thème. Choix de sujets d’écriture individuels ou en petits groupes se rapportant au projet d’écriture…\nGrammaire\nReconnaître et utiliser\n• Les compléments essentiels et les compléments non essentiels.",
+         "key": "y6-french-5-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Qu’elle est belle la terre et/ou L’arbre volant.\nExpression orale 2 : Apprentissage systématique.\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°13 : Sauvez Keiko.\nGrammaire textuelle :\n• Travailler sur les passages descriptifs\n• Résumer le texte.",
+         "session_goals": "Conjugaison\n• Identifier et utiliser les verbes usuels du type « prendre » et « mettre » au passé composé et au futur.",
+         "key": "y6-french-5-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Qu’elle est belle la terre et/ou L’arbre volant.\nExpression orale 3 : Apprentissage systématique.\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer",
+         "day": "3",
+         "contents": "Lecture-compréhension\nT. n°14 : La ménagère de la mer.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire des passages justificatifs à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : La description : Entraînement et construction de l’outil d’aide\n• S’entraîner à l’écriture d’un texte descriptif.",
+         "key": "y6-french-5-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale 4 : Apprentissage systématique.\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n°14 : La ménagère de la mer.\nGrammaire textuelle :\n• Travailler sur les passages descriptifs.\n• Réécrire un dialogue.\n• Justifier un point de vue.",
+         "session_goals": "Orthographe\n• Consolider la notion d’accord sujet/verbe.\nProjet d'écriture : Production\nProduire un récit intégrant un passage descriptif.",
+         "key": "y6-french-5-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Expression orale 5 : Apprentissage systématique.\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n°15 : Les parapluies.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison :\nIntégration\n• Intégrer les acquis pour compléter un récit et produire des questions.",
+         "key": "y6-french-5-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Qu’elle est belle la terre et/ou L’arbre volant.\nExpression orale 6 : Intégration/ Evaluation\n• Décrire une situation ou une scène.\n• Donner un air/ le justifier.\n• Informer/ s’informer",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n°15 : Les parapluies.\nGrammaire textuelle :\n• Faire le portrait des personnages,\n• Restituer et produire des répliques.",
+         "session_goals": "Orthographe\n• Appliquer la règle de l’accord sujet/verbe à des activités de mise en correspondance, de complétion et de production.",
+         "key": "y6-french-5-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\nDoc. ‘Conseils pour éviter le gaspillage de l’eau’\n• Prendre conscience des méfaits du gaspillage de l’eau.\nLecture suivie\nConte : « Grain-d ’Aile » 1er épisode.\n• Lire et apprécier le 1er épisode.\n• Emettre des hypothèses sur la suite de l’histoire.",
+         "session_goals": "Projet d’écriture : Réécriture.\nDictée",
+         "key": "y6-french-5-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Qu’elle est belle la terre et/ou L’arbre volant.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nApprendre un vocabulaire nouveau et jouer avec des mots liés au thème de l’« environnement »\nBibliothèque de classe\nLecture-action\n« Le zoo de la classe »\nFabriquer une famille de cygnes.\nJournée plus",
+         "session_goals": "",
+         "key": "y6-french-5-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-5"
+      },
+      {
+       "n": 6,
+       "title": "Unité 3 · Module 6 – Thème : Santé et bien-être – S.T : Etre en forme et mieux se porter",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Exploration.\nPrésentation du module\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°16 : La jeune acrobate.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d’écriture : Présentation du thème et du sous-thème, exploration/établissement de la carte d’exploration/exploitation du thème et du sous-thème. Choix de sujets d’écriture individuels ou en petits groupes se rapportant au projet d’écriture…\nGrammaire\nReconnaître et utiliser le complément de lieu.",
+         "key": "y6-french-6-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Apprentissage systématique 1.\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°16 : La jeune acrobate.\nGrammaire textuelle :\n• Décrire un lieu.\n• Identifier les substituts.\n• Situer une action dans le temps et dans l’espace.\n• Ponctuer un passage descriptif.",
+         "session_goals": "Conjugaison\n• Conjuguer les verbes « aller » et « faire » au passé composé et au futur.",
+         "key": "y6-french-6-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Apprentissage systématique 2.\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "3",
+         "contents": "Lecture-compréhension\nT. n°17 : Des vignettes… pour un ballon.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d’écriture : Entraînement.\n• S’entraîner à la description d’un lieu.",
+         "key": "y6-french-6-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Apprentissage systématique 3.\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n°17 : Des vignettes… pour un ballon.\nGrammaire textuelle :\n• Relever des éléments de description.\n• Restituer l’ordre de certaines actions.\n• Relever et produire des répliques.",
+         "session_goals": "Orthographe\n• Consolider la notion d’accord des du type : masculin + e / eux …euse\nProjet d'écriture : Production\n• Produire un récit intégrant des répliques et une description.",
+         "key": "y6-french-6-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Apprentissage systématique 4.\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n° 18 : La lettre de Jean.\n• Construire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\nLire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison :\nIntégration\n• Intégrer les acquis pour légender une histoire en images et rendre compte d’un événement.",
+         "key": "y6-french-6-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.\nExpression orale : Intégration / évaluation.\n• Raconter\n• Informer / s’informer\n• Décrire\n• Donner des conseils,",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n° 18 : La lettre de Jean.\nGrammaire textuelle :\n• Dégager les caractéristiques de la lettre,\n• Relever des informations précises\n• Imaginer une conversation téléphonique.",
+         "session_goals": "Orthographe\n• Transformer des adjectifs (masculin/féminin, singulier/pluriel)\n• Réécrire un paragraphe au féminin.",
+         "key": "y6-french-6-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\nComment se défendre contre le strass.\n• S’informer sur les techniques de relaxation.\nLecture suivie\nConte : « Grain- d’Aile » 1er épisode.\n• Vérifier les hypothèses émises au 1èr épisode\n• Lire l’épisode et résumer le conte.",
+         "session_goals": "Projet d’écriture : Réécriture",
+         "key": "y6-french-6-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train : Poème : Un matin et/ou Le vélo à mille pattes.",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nAcquérir un vocabulaire un vocabulaire nouveau et jouer avec des mots appartenant aux thèmes de l’amitié et de la fraternité.\nBibliothèque de classe\nLecture-action\n« Les exercices de relaxation »\n• Faire des exercices d’étirement.\nJournée plus",
+         "session_goals": "",
+         "key": "y6-french-6-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-6"
+      },
+      {
+       "n": 7,
+       "title": "Unité 4 · Module 7 – Thème : Loisirs – S.T : Profiter de son temps libre",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°19 : La lettre de Paul\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture :\n• Rappel du projet annuel de la classe et mise au point.\n• Découverte du thème et du sous-thème du M7\n• Etablissement de la carte d'exploration des pistes.\n• Définition d'un projet cadrant avec le thème et le sous-thème et le projet annuel de la classe.\n• Choix de sujets d'écriture individuels ou groupaux se rapportant au projet d'écriture et définition de leurs enjeux et du mode de leur socialisation.\nGrammaire\nReconnaître et utiliser le complément de temps",
+         "key": "y6-french-7-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n° 19 : La lettre de Paul\nGrammaire textuelle :\n• Dégager les caractéristiques formelles de la lettre.\n• Organiser les informations contenues dans la lettre.\n• Transformer un paragraphe par imitation.",
+         "session_goals": "Conjugaison\n• Conjuguer les verbes « dire », « lire » et « écrire » au présent, au passé composé, au futur et à l'impératif.",
+         "key": "y6-french-7-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "3",
+         "contents": "Lecture-compréhension\nT. n° 20 : La lettre de Daniel\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\nLire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Entraînement.\nS'entraîner à l'écriture d'une lettre.",
+         "key": "y6-french-7-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n° 20 : La lettre de Daniel\nGrammaire textuelle :\n• Dégager et organiser les informations contenues dans une lettre.\n• Réécrire un passage.",
+         "session_goals": "Orthographe\nEtudier l'accord des adjectifs en genre et en nombre du type : neuf(s) / neuve(s) ; gentil(s) / gentille(s)…\nProjet d'écriture : Production\n• Ecrire une lettre à un (e) ami (e)",
+         "key": "y6-french-7-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n° 21 : lettre de monsieur Crêpe\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d'une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour répondre à une demande d'information et rédiger une réponse à une lettre.",
+         "key": "y6-french-7-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère\nExpression orale : Exploration.\nPrésentation du module\n• Décrire une situation / une scène\n• raconter\n• Exprimer un sentiment, une préférence / un accord / un désaccord / un refus / Emettre des hypothèses\nStructures\n• Partir en – de / pour + adj. possessif +nom\n• Structure : ni … ni\n• Le gérondif (en + participe passé)\n• La phrase complexe (dès que… pendant que…)",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n° 21 : lettre de monsieur Crêpe\nGrammaire textuelle :\n• Reconstituer la recette de la crêpe.\n• Restituer les formules utilisées dans la lettre.",
+         "session_goals": "Orthographe\n• Transformer des groupes de mots.\n• Compléter une description.\n• Produire des phrases en accordant des adjectifs.",
+         "key": "y6-french-7-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire\n« Peinture, sculpture et théâtre des marionnettes «\ns'informer et débattre sur le thème des loisirs.\nLecture suivie\nConte : 'La boule de cristal'\n• Lire et apprécier le 1èr épisode\n• Emettre des hypothèses sur la suite.",
+         "session_goals": "Projet d'écriture : Réécriture",
+         "key": "y6-french-7-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème :\n• Pour faire le portail d'un oiseau\n• Dans le grenier de ma grand-mère",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nAcquérir un vocabulaire un vocabulaire nouveau et jouer avec des mots appartenant aux thèmes de l'amitié et de la fraternité.\nBibliothèque de classe\nLecture-action\n' Le nombre pensé'\n• S'initier à un tour de magie",
+         "session_goals": "",
+         "key": "y6-french-7-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-7"
+      },
+      {
+       "n": 8,
+       "title": "Unité 4 · Module 8 – Thème : Culture et découverte du monde – S.T : Découvrir d’autres modes de vie",
+       "sessions": [
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis, une préférence\nStructures\n• Partir en / de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "1",
+         "contents": "Lecture compréhension\nT. n°22 : Le grand voyage\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d’écriture :\n• Rappel du projet annuel de la classe et mise au point.\n• Découverte du thème et du sous-thème du M7\n• Etablissement de la carte d’exploration des pistes.\n• Définition d’un projet cadrant avec le thème et le sous-thème et le projet annuel de la classe.\n• Choix de sujets d’écriture individuels ou groupaux se rapportant au projet d’écriture et définition de leurs enjeux et du mode de leur socialisation.\nGrammaire\nReconnaître et utiliser le complément de manière",
+         "key": "y6-french-8-0-1"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis … une préférence\nStructures\n• Partir en / à/ de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "2",
+         "contents": "Lecture fonctionnement\nT. n°22 : Le grand voyage\nGrammaire textuelle :\n• Fournir des informations sur des pays\n• Choisir un résumé pour le texte",
+         "session_goals": "Conjugaison\n• Conjuguer les verbes « pouvoir » et « vouloir » au présent.",
+         "key": "y6-french-8-0-2"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis, une préférence\nStructures\n• Partir en/ à / de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "3",
+         "contents": "Lecture-compréhension\nT. n° 23 : Une sortie de chasse au Canada\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Projet d'écriture : Entraînement.\n• Décrire un lieu\n• Rédiger la fin d’un récit",
+         "key": "y6-french-8-0-3"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis ... une préférence\nStructures\n• Partir en / à / de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "4",
+         "contents": "Lecture fonctionnement\nT. n° 23 : Une sortie de chasse au Canada\nGrammaire textuelle :\n• Travailler sur les substituts\n• Décrire un animal et un objet\n• Mettre en correspondance explication et images",
+         "session_goals": "Orthographe : Découvrir l’accord du participe passé\nProjet d'écriture : Production\n• Produire un texte intégrant un passage descriptif",
+         "key": "y6-french-8-0-4"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis, une préférence\nStructures\n• Partir en à/ de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "5",
+         "contents": "Lecture compréhension\nT. n° 24 : L’île au trésor\nConstruire le sens du texte à travers des questions orales et écrites.\n• Questionner le texte.\n• Lire à haute voix et d’une manière intelligible, rapide et expressive.",
+         "session_goals": "Auto-dictée\nGrammaire conjugaison : Intégration\n• Intégrer les acquis pour compléter et terminer un récit.",
+         "key": "y6-french-8-0-5"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde\nExpression orale : Exploration.\nPrésentation du module\n• Informer s’informer\n• Décrire un mode de vie\n• Exprimer un avis, une préférence\nStructures\n• Partir en à/ de /pour\n• Jouer d’un instrument\n• Les substituts du G. N : les pronoms : le, la, les\n• Etre fou de joie / heureux /content\n• Etre invité à …\n• Le comparatif, le superlatif (le plus, la plus)",
+         "day": "6",
+         "contents": "Lecture fonctionnement\nT. n° 24 : L’île au trésor\nGrammaire textuelle :\n• Travailler sur les vignettes et le contenu des bulles\n• Reconstruire le résumer de la B. D",
+         "session_goals": "Orthographe\n• Compléter des phrases et un texte par des participes passés\n• Transformer des phrases",
+         "key": "y6-french-8-0-6"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "",
+         "day": "7",
+         "contents": "Lecture documentaire : « Quelques fêtes d’autres pays » s’informer et débattre sur le thème des fêtes.\nLecture suivie\nConte : ‘La boule de cristal’\n• Vérifier les hypothèses émises.\n• Lire le deuxième épisode et résumer le conte.",
+         "session_goals": "Projet d’écriture : Réécriture",
+         "key": "y6-french-8-0-7"
+        },
+        {
+         "activity": "Français",
+         "competency": "",
+         "distinctive_goals": "Mise en train\nPoème : • Une graine voyageait\n• Le vent a fait le tour du monde",
+         "day": "8",
+         "contents": "Page vocabulaire\nla boite à mots\njeux de mots\nAcquérir un vocabulaire un vocabulaire nouveau et jouer avec des mots appartenant aux thèmes du voyage\nBibliothèque de classe\nLecture-action\nLa tour Eiffel\n• Fabriquer une Tour Eiffel par pliage et découpage\nJournée plus",
+         "session_goals": "",
+         "key": "y6-french-8-0-8"
+        }
+       ],
+       "evaluation": null,
+       "evalKey": "y6-french-8"
+      }
+     ],
+     "labels": {
+      "day": "Jour",
+      "distinctive_goals": "L'oral",
+      "contents": "La lecture",
+      "session_goals": "L'écrit"
+     }
+    },
+    {
      "id": "math",
      "name": "الرياضيات",
      "act": "رياضيات",
